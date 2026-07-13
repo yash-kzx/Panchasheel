@@ -13,7 +13,7 @@ export const SERVICE_OPTIONS = [
   "Solar Power Survey",
   "Irrigation & River Survey",
   "Transmission Line Survey",
-  "Land Acquisition Survey",
+  "Private Land Acquisition",
   "Utility Mapping",
   "Construction Survey",
   "Other",

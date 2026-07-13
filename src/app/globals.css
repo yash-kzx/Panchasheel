@@ -134,7 +134,7 @@
 /* ── Scroll Offset (fixed navbar) ───────────────────────── */
 @layer base {
   [id] {
-    scroll-margin-top: 5rem;
+    scroll-margin-top: 7rem;
   }
 }
 

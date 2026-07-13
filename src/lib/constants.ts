@@ -35,9 +35,9 @@ export const SERVICES = [
       "High-accuracy differential GPS surveys for control point establishment, boundary demarcation, and geospatial referencing across large project areas.",
   },
   {
-    title: "Drone Survey",
+    title: "Thermal Survey",
     description:
-      "Aerial data acquisition using professional UAV platforms for topographic mapping, volumetric analysis, progress monitoring, and orthomosaic generation.",
+      "Drone-based thermal imaging surveys for infrastructure inspection, solar power plants, electrical utilities, industrial facilities, building diagnostics, and asset condition assessment. High-resolution thermal cameras identify heat loss, electrical faults, equipment anomalies, and maintenance issues before they become critical.",
   },
   {
     title: "LiDAR Survey",
@@ -114,9 +114,9 @@ export const TECHNOLOGIES = [
       "Spatial data processing, thematic mapping, and geospatial analysis using industry-standard GIS platforms.",
   },
   {
-    name: "GNSS",
-    fullName: "Global Navigation Satellite System",
+    name: "Thermal Survey",
+    fullName: "Advanced Thermal Imaging",
     description:
-      "Multi-constellation satellite positioning for field surveys, real-time kinematic corrections, and geodetic referencing.",
+      "Advanced thermal imaging surveys for infrastructure inspection, solar plants, utilities, industrial facilities, and condition assessment using high-resolution thermal cameras mounted on drones.",
   },
 ] as const;

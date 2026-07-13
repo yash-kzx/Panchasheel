@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 80" fill="none" role="img" aria-label="Panchasheel — navbar logo">
+  <title>Panchasheel</title>
+
+  <defs>
+    <!-- Clip the P stem so city buildings are masked within the letterform only -->
+    <clipPath id="p-body-clip">
+      <path d="M14 6 H50 C61 6 70 14 70 25 C70 36 61 44 50 44 H30 V72 H14 Z"/>
+    </clipPath>
+    <!-- Clip the P bowl interior for drone + scan lines -->
+    <clipPath id="p-bowl-clip">
+      <path d="M30 14 H48 C55 14 61 19 61 25 C61 31 55 36 48 36 H30 Z"/>
+    </clipPath>
+  </defs>
+
+  <!-- ═══════════════════════════════════════════
+       P  I C O N  GROUP  (0–80 x-range)
+       ═══════════════════════════════════════════ -->
+  <g id="p-icon">
+
+    <!-- Outer P body — dark slate -->
+    <path d="M14 6 H50 C61 6 70 14 70 25 C70 36 61 44 50 44 H30 V72 H14 Z"
+          fill="#1a2436"/>
+
+    <!-- ── City buildings — clipped inside the P body ── -->
+    <g clip-path="url(#p-body-clip)">
+      <!-- Building 1 (slim, medium height) -->
+      <rect x="15" y="19" width="4.5" height="25" fill="#344455"/>
+      <!-- Building 2 (widest, tallest) -->
+      <rect x="20.5" y="13" width="5.5" height="31" fill="#253244"/>
+      <!-- Building 3 (short) -->
+      <rect x="27" y="23" width="4" height="21" fill="#344455"/>
+    </g>
+
+    <!-- ── P bowl cutout — uses even-odd fill to punch a transparent hole ── -->
+    <!-- We draw the filled P using even-odd rule so the bowl is truly transparent -->
+    <path d="M14 6 H50 C61 6 70 14 70 25 C70 36 61 44 50 44 H30 V72 H14 Z
+             M30 14 H48 C55 14 61 19 61 25 C61 31 55 36 48 36 H30 Z"
+          fill="#1a2436" fill-rule="evenodd"/>
+
+    <!-- ── Drone (inside P bowl) ── -->
+    <g clip-path="url(#p-bowl-clip)">
+      <!-- Body -->
+      <rect x="38" y="17.5" width="8" height="4" fill="#1a2436" rx="1"/>
+      <!-- Arms -->
+      <line x1="38" y1="19.5" x2="33.5" y2="17.5" stroke="#1a2436" stroke-width="1.1"/>
+      <line x1="46" y1="19.5" x2="50.5" y2="17.5" stroke="#1a2436" stroke-width="1.1"/>
+      <!-- Rotors -->
+      <ellipse cx="32.5" cy="17" rx="2.8" ry="0.9" fill="#1a2436"/>
+      <ellipse cx="51.5" cy="17" rx="2.8" ry="0.9" fill="#1a2436"/>
+      <!-- Scan beams -->
+      <line x1="42" y1="21.5" x2="34" y2="34" stroke="#2b4a8c" stroke-width="0.85" stroke-dasharray="2 1.5"/>
+      <line x1="42" y1="21.5" x2="38" y2="35" stroke="#2b4a8c" stroke-width="0.85" stroke-dasharray="2 1.5"/>
+      <line x1="42" y1="21.5" x2="42" y2="35.5" stroke="#2b4a8c" stroke-width="0.85" stroke-dasharray="2 1.5"/>
+      <line x1="42" y1="21.5" x2="46" y2="35" stroke="#2b4a8c" stroke-width="0.85" stroke-dasharray="2 1.5"/>
+      <line x1="42" y1="21.5" x2="50" y2="34" stroke="#2b4a8c" stroke-width="0.85" stroke-dasharray="2 1.5"/>
+    </g>
+
+    <!-- ── Road perspective lines (lower P stem, clipped inside body) ── -->
+    <g clip-path="url(#p-body-clip)" opacity="0.55">
+      <line x1="30" y1="72" x2="44" y2="46" stroke="white" stroke-width="1.6"/>
+      <line x1="27" y1="72" x2="36" y2="46" stroke="white" stroke-width="0.9" stroke-dasharray="3 2.5"/>
+      <line x1="33" y1="72" x2="52" y2="46" stroke="white" stroke-width="0.9" stroke-dasharray="3 2.5"/>
+    </g>
+
+    <!-- ── Amber gold contour sweep (tail of P sweeping right and down) ── -->
+    <!-- Primary thick stroke -->
+    <path d="M50 44 C59 44 69 49 71 57 C73 65 64 72 56 73.5 C47 75 35 73 28 71"
+          stroke="#9e7a20" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <!-- Secondary lighter stroke for depth -->
+    <path d="M53 45.5 C63 46.5 72 53 73 61 C74 68 65 74 57 76 C48 77.5 36 75 28 71"
+          stroke="#c49a28" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.5"/>
+    <!-- Topographic contour dashes -->
+    <path d="M51 48 C59 48 67 52 69 58.5 C71 65 63 70 55 71.5 C46 73 34 71.5 28 70"
+          stroke="#9e7a20" stroke-width="1.1" fill="none" opacity="0.4" stroke-dasharray="3.5 2.5"/>
+    <path d="M52 52 C59.5 52 67 55.5 68.5 61 C70 67 62.5 71.5 55 72.5"
+          stroke="#9e7a20" stroke-width="1" fill="none" opacity="0.3" stroke-dasharray="3 2.5"/>
+
+    <!-- ── Blue tail sweep (bottom arc) ── -->
+    <path d="M34 71.5 C39 75 48 77.5 55 77.5 C62 77.5 69 74 71 68.5 C73 63 70 56.5 64 52"
+          stroke="#2b4a8c" stroke-width="5" fill="none" stroke-linecap="round"/>
+
+  </g>
+
+  <!-- ═══════════════════════════════════════════
+       W O R D M A R K  —  "PANCHASHEEL"
+       Space Grotesk 600, generous letter-spacing
+       Vertically centered to icon
+       ═══════════════════════════════════════════ -->
+  <text
+    x="92"
+    y="40"
+    font-family="'Space Grotesk', 'Inter', system-ui, sans-serif"
+    font-size="25"
+    font-weight="600"
+    letter-spacing="4"
+    fill="#1a2436"
+    dominant-baseline="middle"
+  >PANCHASHEEL</text>
+
+</svg>

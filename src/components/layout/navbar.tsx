@@ -35,37 +35,69 @@ export function Navbar() {
     >
       <nav
         className="mx-auto flex max-w-7xl items-center justify-between px-6 lg:px-8"
-        style={{ height: "64px" }}
+        style={{ height: "104px" }}
         aria-label="Primary navigation"
       >
-        {/* Logo */}
+        {/* Logo — crossfade between white (hero) and color (scrolled) */}
         <Link
           href="/"
           aria-label={`${SITE_NAME} — Home`}
-          className="flex-shrink-0"
+          className="flex-shrink-0 flex items-center pl-6"
         >
           {/*
-           * The logo has a white background.
-           * We wrap it in a white rounded container so it renders cleanly
-           * on both the transparent (dark hero) and scrolled (light) navbar states.
-           * The container is subtle on light bg, essential on dark bg.
+           * Two logos stacked in the same box via absolute positioning.
+           * On the transparent hero: white logo opacity 1, color logo opacity 0.
+           * On scroll: color logo opacity 1, white logo opacity 0.
+           * 300ms ease crossfade, zero layout shift.
+           * Desktop height: 100px (~20% increase from 84px).
+           * Responsive: clamp(66px, 7.7vw, 100px) scales gracefully across viewports.
            */}
-          <div
-            className="flex items-center justify-center bg-white px-2.5 py-1"
-            style={{
-              boxShadow: scrolled
-                ? "0 0 0 1px rgba(0,0,0,0.06)"
-                : "0 1px 4px rgba(0,0,0,0.35)",
-            }}
-          >
+          <div style={{
+            position: "relative",
+            height: "clamp(66px, 7.7vw, 100px)",
+            width: "auto",
+            display: "flex",
+            alignItems: "center",
+          }}>
+            {/* Color logo — visible when scrolled */}
             <Image
-              src="/images/logo.png"
+              src="/images/navbar-logo.png"
               alt="Panchasheel Geo Infra Solutions — company logo"
-              width={120}
-              height={120}
-              className="h-9 w-auto object-contain"
+              width={370}
+              height={100}
+              className="w-auto object-contain"
+              style={{
+                height: "clamp(66px, 7.7vw, 100px)",
+                width: "auto",
+                maxHeight: "100px",
+                display: "block",
+                opacity: scrolled ? 1 : 0,
+                transition: "opacity 300ms ease",
+              }}
               priority
-              quality={90}
+              quality={95}
+            />
+            {/* White logo — visible over hero (transparent navbar) */}
+            <Image
+              src="/images/navbar-logo-white.png"
+              alt=""
+              aria-hidden="true"
+              width={370}
+              height={100}
+              className="w-auto object-contain"
+              style={{
+                height: "clamp(66px, 7.7vw, 100px)",
+                width: "auto",
+                maxHeight: "100px",
+                position: "absolute",
+                top: 0,
+                left: 0,
+                display: "block",
+                opacity: scrolled ? 0 : 1,
+                transition: "opacity 300ms ease",
+              }}
+              priority
+              quality={95}
             />
           </div>
         </Link>
@@ -141,7 +173,7 @@ export function Navbar() {
       {mobileOpen && (
         <div
           id="mobile-menu"
-          className="lg:hidden fixed inset-0 top-[64px] z-40 bg-brand-warm"
+          className="lg:hidden fixed inset-0 top-[104px] z-40 bg-brand-warm"
           role="dialog"
           aria-modal="true"
           aria-label="Mobile navigation"

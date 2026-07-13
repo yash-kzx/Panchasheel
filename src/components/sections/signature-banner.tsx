@@ -67,7 +67,7 @@ export function SignatureBanner() {
                   Data Deliverables
                 </p>
                 <p className="text-sm font-medium text-white">
-                  Point clouds, orthomosaics, DTMs, contour maps, and
+                  Point clouds, orthomosaics, DEM files, contour maps, and
                   georeferenced CAD drawings.
                 </p>
               </div>
