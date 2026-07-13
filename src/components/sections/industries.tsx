@@ -11,51 +11,111 @@ const INDUSTRIES = [
     name: "Highways",
     image: "/images/industry-highways.jpg",
     imageAlt: "Aerial drone view of a national highway corridor cutting through Indian terrain",
+    capabilities: [
+      "Route alignment surveys",
+      "Corridor mapping",
+      "Earthwork monitoring",
+      "As-built documentation",
+    ],
   },
   {
     name: "Railways",
     image: "/images/industry-railways.jpg",
     imageAlt: "Aerial drone view of railway tracks disappearing to the horizon",
+    capabilities: [
+      "Track alignment surveys",
+      "Corridor mapping",
+      "Progress monitoring",
+      "Asset documentation",
+    ],
   },
   {
     name: "Mining",
     image: "/images/industry-mining.jpg",
     imageAlt: "Aerial photograph of an open-cast mining operation in India",
+    capabilities: [
+      "Volumetric analysis",
+      "Stockpile calculations",
+      "Pit monitoring",
+      "Terrain modelling",
+    ],
   },
   {
     name: "Solar Power",
     image: "/images/industry-solar.jpg",
     imageAlt: "Aerial view of a large solar power plant with geometric panel arrays in Rajasthan",
+    capabilities: [
+      "Site suitability surveys",
+      "Panel layout mapping",
+      "Thermal inspections",
+      "Progress monitoring",
+    ],
   },
   {
     name: "Construction",
     image: "/images/industry-construction.jpg",
     imageAlt: "Active highway construction site with earthmoving machinery and workers",
+    capabilities: [
+      "Progress tracking",
+      "Site mapping",
+      "Quantity verification",
+      "As-built surveys",
+    ],
   },
   {
     name: "Smart Cities",
     image: "/images/industry-smart-cities.jpg",
     imageAlt: "Aerial view of a modern smart city at golden hour showing organized urban infrastructure",
+    capabilities: [
+      "Urban GIS mapping",
+      "Utility mapping",
+      "Infrastructure planning",
+      "Digital city models",
+    ],
   },
   {
     name: "Transmission Lines",
     image: "/images/industry-transmission-lines.jpg",
     imageAlt: "Aerial photography of high-voltage transmission towers stretching to the horizon",
+    capabilities: [
+      "Corridor surveys",
+      "Tower positioning",
+      "Clearance analysis",
+      "Route optimisation",
+    ],
   },
   {
     name: "Water Resources",
     image: "/images/industry-water-resources.jpg",
     imageAlt: "Aerial view of a large dam and reservoir at golden hour",
+    capabilities: [
+      "Reservoir mapping",
+      "Canal alignment",
+      "Floodplain analysis",
+      "Watershed surveys",
+    ],
   },
   {
     name: "Irrigation Projects",
     image: "/images/industry-irrigation-projects.jpg",
     imageAlt: "Aerial drone view of large irrigation canals through agricultural farmland",
+    capabilities: [
+      "Canal surveys",
+      "Command area mapping",
+      "Terrain analysis",
+      "Earthwork calculations",
+    ],
   },
   {
     name: "Government Infrastructure",
     image: "/images/industry-government-infrastructure.jpg",
     imageAlt: "Aerial view of major bridge infrastructure project under construction",
+    capabilities: [
+      "Asset documentation",
+      "Land surveys",
+      "GIS integration",
+      "Engineering deliverables",
+    ],
   },
 ] as const;
 
@@ -92,26 +152,11 @@ export function IndustriesSection() {
   const scroll = useCallback((dir: "left" | "right") => {
     const el = trackRef.current;
     if (!el) return;
-    // Snap by ~1 card width (first child width + gap)
     const card = el.querySelector("article") as HTMLElement | null;
     if (!card) return;
-    const gap = 16; // gap-4
+    const gap = 16;
     const step = card.offsetWidth + gap;
     el.scrollBy({ left: dir === "left" ? -step : step, behavior: "smooth" });
-  }, []);
-
-  /* ── Horizontal wheel redirect ────────────────── */
-  useEffect(() => {
-    const el = trackRef.current;
-    if (!el) return;
-    const onWheel = (e: WheelEvent) => {
-      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return; // native horizontal scroll
-      if (e.deltaY === 0) return;
-      e.preventDefault();
-      el.scrollBy({ left: e.deltaY * 1.5, behavior: "auto" });
-    };
-    el.addEventListener("wheel", onWheel, { passive: false });
-    return () => el.removeEventListener("wheel", onWheel);
   }, []);
 
   /* ── Click-and-drag (desktop) ─────────────────── */
@@ -267,67 +312,121 @@ export function IndustriesSection() {
               WebkitOverflowScrolling: "touch",
               paddingLeft: "max(24px, calc((100vw - 1280px) / 2 + 32px))",
               paddingRight: "max(24px, calc((100vw - 1280px) / 2 + 32px))",
-              paddingTop: "8px",
-              paddingBottom: "24px",
+              /* Extra vertical padding so the lifted card isn't clipped */
+              paddingTop: "16px",
+              paddingBottom: "32px",
               cursor: isDragging ? "grabbing" : "grab",
-              /* Hide scrollbar across browsers */
               msOverflowStyle: "none",
               scrollbarWidth: "none",
             } as React.CSSProperties}
           >
             {INDUSTRIES.map((industry) => (
-              <article
+              /*
+               * Lift wrapper — handles translateY and drop-shadow.
+               * Kept separate from the inner card so overflow-hidden
+               * on the card doesn't clip the lifted state.
+               */
+              <div
                 key={industry.name}
-                role="listitem"
-                className="group flex-none relative overflow-hidden rounded-sm bg-brand-steel"
+                className="group flex-none"
                 style={{
-                  /* Desktop: ~5 cards; Tablet: 3; Mobile: 1.15 */
                   width: "clamp(240px, calc((100vw - 160px) / 1.3), 320px)",
                   aspectRatio: "3 / 4",
                   scrollSnapAlign: "start",
                   flexShrink: 0,
+                  /* Lift + shadow on hover via CSS transition */
+                  transition: "transform 280ms cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 280ms ease",
+                }}
+                /* Inline hover via onMouseEnter/Leave since Tailwind can't animate arbitrary filter */
+                onMouseEnter={(e) => {
+                  const el = e.currentTarget;
+                  el.style.transform = "translateY(-7px)";
+                  el.style.filter = "drop-shadow(0 20px 40px rgba(0,0,0,0.55))";
+                }}
+                onMouseLeave={(e) => {
+                  const el = e.currentTarget;
+                  el.style.transform = "translateY(0px)";
+                  el.style.filter = "none";
                 }}
               >
-                {/* Photography */}
-                <Image
-                  src={industry.image}
-                  alt={industry.imageAlt}
-                  fill
-                  draggable={false}
-                  className="object-cover select-none transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-                  sizes="(max-width: 640px) 80vw, (max-width: 1024px) 33vw, 20vw"
-                />
+                <article
+                  role="listitem"
+                  className="relative w-full h-full overflow-hidden rounded-sm bg-brand-steel"
+                >
+                  {/* Photography — zooms on hover */}
+                  <Image
+                    src={industry.image}
+                    alt={industry.imageAlt}
+                    fill
+                    draggable={false}
+                    className="object-cover select-none transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+                    sizes="(max-width: 640px) 80vw, (max-width: 1024px) 33vw, 20vw"
+                  />
 
-                {/* Dark gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
+                  {/*
+                   * Base gradient — darkens further on hover for readability
+                   * Two layers: persistent base + hover-intensified overlay
+                   */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/10 transition-opacity duration-280" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-280" />
 
-                {/* Hover: subtle gold glow overlay */}
-                <div
-                  className="absolute inset-0 transition-opacity duration-300 opacity-0 group-hover:opacity-100"
-                  style={{
-                    background: "linear-gradient(to top, rgba(158,122,32,0.18) 0%, transparent 60%)",
-                  }}
-                />
+                  {/* Gold tint overlay on hover */}
+                  <div
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-280"
+                    style={{
+                      background: "linear-gradient(to top, rgba(158,122,32,0.20) 0%, transparent 55%)",
+                    }}
+                  />
 
-                {/* Name — bottom-left */}
-                <div className="absolute bottom-0 left-0 right-0 p-5">
-                  <h3 className="text-base font-semibold text-white leading-tight tracking-wide">
-                    {industry.name}
-                  </h3>
-                </div>
+                  {/*
+                   * Bottom content panel.
+                   *
+                   * Default state: title sits at the bottom with standard padding.
+                   * Hover state:   panel slides up ~40px, pulling the title up and
+                   * revealing the capabilities list beneath it.
+                   */}
+                  <div
+                    className="absolute left-0 right-0 bottom-0 p-5 transition-transform duration-280 ease-out group-hover:-translate-y-10"
+                    style={{ willChange: "transform" }}
+                  >
+                    {/* Industry title — always visible */}
+                    <h3 className="text-[15px] font-semibold text-white leading-tight tracking-wide mb-3.5">
+                      {industry.name}
+                    </h3>
 
-                {/* Gold accent line — grows on hover */}
-                <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-brand-accent transition-all duration-500 ease-out group-hover:w-full" />
+                    {/* Capabilities list — fades in on hover */}
+                    <ul
+                      className="space-y-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 delay-75"
+                      aria-label={`${industry.name} capabilities`}
+                    >
+                      {industry.capabilities.map((cap) => (
+                        <li
+                          key={cap}
+                          className="flex items-start gap-2 text-[11.5px] font-medium text-white/75 leading-snug"
+                        >
+                          {/* Gold tick */}
+                          <span
+                            className="mt-[3px] flex-shrink-0 w-[4px] h-[4px] rounded-full bg-brand-accent"
+                            aria-hidden="true"
+                          />
+                          {cap}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
 
-                {/* Subtle card lift shadow */}
-                <div
-                  className="absolute inset-0 rounded-sm ring-1 ring-transparent transition-all duration-300 group-hover:ring-brand-accent/30"
-                />
-              </article>
+
+                  {/* Gold accent line — grows full width on hover */}
+                  <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-brand-accent transition-all duration-500 ease-out group-hover:w-full" />
+
+                  {/* Subtle gold ring on hover */}
+                  <div className="absolute inset-0 rounded-sm ring-1 ring-transparent transition-all duration-280 group-hover:ring-brand-accent/25" />
+                </article>
+              </div>
             ))}
           </div>
 
-          {/* Hide webkit scrollbar via style tag */}
+          {/* Hide webkit scrollbar */}
           <style>{`
             [role="list"][aria-label="Industries served"]::-webkit-scrollbar {
               display: none;
@@ -336,7 +435,7 @@ export function IndustriesSection() {
         </div>
       </Reveal>
 
-      {/* Scroll hint dots */}
+      {/* Scroll hint */}
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8 mt-6 flex items-center gap-3" aria-hidden="true">
         <div className="h-px flex-1 bg-white/8" />
         <p className="text-[11px] font-medium tracking-[0.15em] uppercase text-brand-concrete/60">
