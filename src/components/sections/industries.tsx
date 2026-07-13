@@ -35,6 +35,13 @@ const PRIMARY_INDUSTRIES = [
     image: "/images/industry-railways.jpg",
     imageAlt: "Aerial drone view of railway tracks disappearing to the horizon",
   },
+  {
+    name: "Construction",
+    description:
+      "Pre-construction surveys, earthwork volume calculations, site layout, and as-built documentation.",
+    image: "/images/industry-construction.jpg",
+    imageAlt: "Active highway construction site with earthmoving machinery and workers",
+  },
 ] as const;
 
 const SECONDARY_INDUSTRIES = [
@@ -50,7 +57,7 @@ export function IndustriesSection() {
   return (
     <section
       id="industries"
-      className="relative py-24 lg:py-32 bg-brand-charcoal overflow-hidden"
+      className="relative py-28 lg:py-40 bg-brand-charcoal overflow-hidden"
       aria-labelledby="industries-heading"
     >
       {/* Subtle background texture */}
@@ -98,21 +105,21 @@ export function IndustriesSection() {
         </div>
 
         {/* Primary industries — photography grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
           {PRIMARY_INDUSTRIES.map((industry, index) => (
             <Reveal
               key={industry.name}
               direction="up"
-              delay={0.1 + index * 0.08}
+              delay={0.1 + index * 0.07}
             >
-              <article className="group relative aspect-[3/4] overflow-hidden rounded-sm bg-brand-steel">
+              <article className="group relative aspect-[4/3] sm:aspect-[2/3] overflow-hidden rounded-sm bg-brand-steel">
                 {/* Photography */}
                 <Image
                   src={industry.image}
                   alt={industry.imageAlt}
                   fill
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 20vw"
                 />
 
                 {/* Dark gradient overlay */}

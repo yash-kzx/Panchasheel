@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X, Phone } from "lucide-react";
 import { NAV_LINKS, SITE_NAME, CONTACT } from "@/lib/constants";
 
@@ -25,34 +26,47 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-brand-warm/95 backdrop-blur-sm border-b border-border"
+          ? "bg-brand-warm/97 backdrop-blur-md"
           : "bg-transparent"
       }`}
+      style={scrolled ? { borderBottom: "1px solid rgba(26,36,54,0.12)", boxShadow: "0 1px 0 rgba(158,122,32,0.25)" } : {}}
     >
       <nav
-        className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8"
+        className="mx-auto flex max-w-7xl items-center justify-between px-6 lg:px-8"
+        style={{ height: "64px" }}
         aria-label="Primary navigation"
       >
-        {/* Logo / brand */}
+        {/* Logo */}
         <Link
           href="/"
-          className="flex items-center gap-3 group"
           aria-label={`${SITE_NAME} — Home`}
+          className="flex-shrink-0"
         >
-          <div className="flex h-9 w-9 items-center justify-center rounded bg-brand-charcoal">
-            <span className="text-sm font-bold text-brand-warm tracking-tight">
-              PG
-            </span>
-          </div>
-          <div className="hidden sm:block">
-            <span className="block text-sm font-semibold leading-tight text-brand-charcoal">
-              Panchsheel
-            </span>
-            <span className="block text-[11px] font-medium leading-tight text-brand-slate tracking-wide">
-              Geo Infra Solution
-            </span>
+          {/*
+           * The logo has a white background.
+           * We wrap it in a white rounded container so it renders cleanly
+           * on both the transparent (dark hero) and scrolled (light) navbar states.
+           * The container is subtle on light bg, essential on dark bg.
+           */}
+          <div
+            className="flex items-center justify-center bg-white px-2.5 py-1"
+            style={{
+              boxShadow: scrolled
+                ? "0 0 0 1px rgba(0,0,0,0.06)"
+                : "0 1px 4px rgba(0,0,0,0.35)",
+            }}
+          >
+            <Image
+              src="/images/logo.png"
+              alt="Panchasheel Geo Infra Solutions — company logo"
+              width={120}
+              height={120}
+              className="h-9 w-auto object-contain"
+              priority
+              quality={90}
+            />
           </div>
         </Link>
 
@@ -62,7 +76,12 @@ export function Navbar() {
             <li key={link.href}>
               <Link
                 href={link.href}
-                className="text-sm font-medium text-brand-steel transition-colors hover:text-brand-charcoal"
+                className={`text-[0.8125rem] font-medium transition-colors ${
+                  scrolled
+                    ? "text-brand-steel hover:text-brand-charcoal"
+                    : "text-white/75 hover:text-white"
+                }`}
+                style={{ letterSpacing: "0.01em" }}
               >
                 {link.label}
               </Link>
@@ -71,17 +90,29 @@ export function Navbar() {
         </ul>
 
         {/* Desktop CTA */}
-        <div className="hidden lg:flex items-center gap-4">
+        <div className="hidden lg:flex items-center gap-5">
           <a
             href={`tel:${CONTACT.phone[0].replace(/\s/g, "")}`}
-            className="flex items-center gap-2 text-sm font-medium text-brand-steel hover:text-brand-charcoal transition-colors"
+            className={`flex items-center gap-1.5 text-[0.8125rem] font-medium transition-colors ${
+              scrolled
+                ? "text-brand-steel hover:text-brand-charcoal"
+                : "text-white/70 hover:text-white"
+            }`}
+            style={{ letterSpacing: "0.01em" }}
           >
-            <Phone className="h-4 w-4" aria-hidden="true" />
+            <Phone className="h-3.5 w-3.5" aria-hidden="true" />
             <span>{CONTACT.phone[0]}</span>
           </a>
           <Link
             href="#contact"
-            className="inline-flex items-center justify-center rounded bg-brand-charcoal px-5 py-2.5 text-sm font-medium text-brand-warm transition-colors hover:bg-brand-steel focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-accent"
+            className="navbar-cta inline-flex items-center justify-center px-5 py-2.5 text-[0.8125rem] font-semibold text-white transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-accent"
+            style={{
+              background: scrolled
+                ? "linear-gradient(135deg, #1a2436 0%, #344455 100%)"
+                : "linear-gradient(135deg, #9e7a20 0%, #7a5e18 100%)",
+              letterSpacing: "0.02em",
+              boxShadow: "0 1px 3px rgba(0,0,0,0.3)",
+            }}
           >
             Request Quote
           </Link>
@@ -90,7 +121,9 @@ export function Navbar() {
         {/* Mobile menu button */}
         <button
           type="button"
-          className="lg:hidden flex items-center justify-center h-10 w-10 rounded text-brand-charcoal"
+          className={`lg:hidden flex items-center justify-center h-10 w-10 rounded transition-colors ${
+            scrolled ? "text-brand-charcoal" : "text-white"
+          }`}
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-expanded={mobileOpen}
           aria-controls="mobile-menu"
@@ -108,7 +141,7 @@ export function Navbar() {
       {mobileOpen && (
         <div
           id="mobile-menu"
-          className="lg:hidden fixed inset-0 top-[72px] z-40 bg-brand-warm"
+          className="lg:hidden fixed inset-0 top-[64px] z-40 bg-brand-warm"
           role="dialog"
           aria-modal="true"
           aria-label="Mobile navigation"

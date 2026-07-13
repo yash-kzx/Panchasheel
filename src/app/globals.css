@@ -6,21 +6,29 @@
 
 /* ── Design System ──────────────────────────────────────── */
 /*
-  Color rationale:
-  - Deep charcoal (#1a1a1a) anchors the brand in authority
-  - Steel/slate grays provide tonal range without going cold
-  - Warm off-white (#f7f5f2) keeps surfaces inviting, not clinical
-  - Accent teal (#0e7a6e) — disciplined, professional, distinct from
-    startup blues and banned purples. Evokes precision instruments
-    and engineering diagrams.
+  Color rationale (V2 — derived from the company logo):
+
+  · Deep slate-navy (#1a2436) — from the logo's structural letterform and
+    wordmark. Evokes engineering drawings, geodetic authority, and the
+    precision of technical instruments. Replaces generic near-black.
+
+  · Amber gold (#9e7a20) — from the topographic contour element in the logo.
+    Evokes surveyed terrain, ground truth, contour mapping, and the warm
+    ochre tones of Indian soil and construction sites. Replaces startup teal.
+
+  · Warm off-white (#f7f5f2) — natural field survey paper. Grounding,
+    not clinical. Works as the primary surface for light sections.
+
+  · Slate-grey tonal range — warm neutrals for text hierarchy.
+    Body text (brand-slate) stays warm neutral for legibility.
 */
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
+  --font-sans: var(--font-inter);           /* Inter for body — legible, warm */
   --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-heading);
+  --font-heading: var(--font-geist-sans);   /* Space Grotesk for headings — technical authority */
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -59,50 +67,50 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 
   /* Brand palette */
-  --color-brand-charcoal: #1a1a1a;
-  --color-brand-steel: #3d3d3d;
-  --color-brand-slate: #5c5c5c;
-  --color-brand-concrete: #8a8a8a;
-  --color-brand-stone: #b8b5b0;
-  --color-brand-warm: #f7f5f2;
-  --color-brand-accent: #0e7a6e;
-  --color-brand-accent-dark: #0a5c53;
-  --color-brand-accent-light: #e6f5f3;
+  --color-brand-charcoal: #1a2436;      /* Logo navy — engineering authority */
+  --color-brand-steel: #344455;         /* Mid-slate for secondary UI */
+  --color-brand-slate: #5c5c5c;         /* Warm neutral — body text */
+  --color-brand-concrete: #8a8a8a;      /* Muted — captions, labels */
+  --color-brand-stone: #b8b5b0;         /* Light warm grey */
+  --color-brand-warm: #f7f5f2;          /* Off-white ground surface */
+  --color-brand-accent: #9e7a20;        /* Amber gold — topographic contour */
+  --color-brand-accent-dark: #7a5e18;   /* Deeper amber */
+  --color-brand-accent-light: #f0e0bc;  /* Pale amber tint */
 }
 
 :root {
   --background: #f7f5f2;
-  --foreground: #1a1a1a;
+  --foreground: #1a2436;
   --card: #ffffff;
-  --card-foreground: #1a1a1a;
+  --card-foreground: #1a2436;
   --popover: #ffffff;
-  --popover-foreground: #1a1a1a;
-  --primary: #1a1a1a;
+  --popover-foreground: #1a2436;
+  --primary: #1a2436;
   --primary-foreground: #f7f5f2;
   --secondary: #eeece8;
-  --secondary-foreground: #1a1a1a;
+  --secondary-foreground: #1a2436;
   --muted: #eeece8;
   --muted-foreground: #5c5c5c;
-  --accent: #0e7a6e;
+  --accent: #9e7a20;
   --accent-foreground: #ffffff;
   --destructive: oklch(0.577 0.245 27.325);
   --border: #d6d3ce;
   --input: #d6d3ce;
-  --ring: #0e7a6e;
-  --chart-1: #0e7a6e;
-  --chart-2: #3d3d3d;
+  --ring: #9e7a20;
+  --chart-1: #9e7a20;
+  --chart-2: #344455;
   --chart-3: #8a8a8a;
   --chart-4: #b8b5b0;
-  --chart-5: #1a1a1a;
-  --radius: 0.375rem;
+  --chart-5: #1a2436;
+  --radius: 0.125rem;           /* Sharp, engineering-grade corners */
   --sidebar: #f7f5f2;
-  --sidebar-foreground: #1a1a1a;
-  --sidebar-primary: #1a1a1a;
+  --sidebar-foreground: #1a2436;
+  --sidebar-primary: #1a2436;
   --sidebar-primary-foreground: #f7f5f2;
   --sidebar-accent: #eeece8;
-  --sidebar-accent-foreground: #1a1a1a;
+  --sidebar-accent-foreground: #1a2436;
   --sidebar-border: #d6d3ce;
-  --sidebar-ring: #0e7a6e;
+  --sidebar-ring: #9e7a20;
 
   --font-heading: var(--font-geist-sans);
 }
@@ -117,6 +125,10 @@
   html {
     @apply font-sans scroll-smooth;
   }
+  /* Space Grotesk for headings — geometric, technical */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
 }
 
 /* ── Scroll Offset (fixed navbar) ───────────────────────── */
@@ -126,19 +138,82 @@
   }
 }
 
-/* ── Typography Scale ───────────────────────────────────── */
+/* ── Typography ─────────────────────────────────────────── */
 /*
-  Heading: Space Grotesk — geometric, modern, technical
-  Body:    Inter — clean, highly legible
-  
-  Scale follows a 1.25 ratio for consistency.
-  All headings get tight tracking; body gets generous line-height.
+  Heading: Space Grotesk — geometric, modern, technical authority
+  Body:    Inter — clean, highly legible, warm and neutral
+
+  Headings inherit tight tracking from component-level classes.
+  Body text gets generous line-height for readability.
 */
 
 /* ── Focus States ───────────────────────────────────────── */
 @layer base {
   :focus-visible {
     @apply outline-2 outline-offset-2 outline-brand-accent;
+  }
+}
+
+/* ── Selection ──────────────────────────────────────────── */
+@layer base {
+  ::selection {
+    background-color: #9e7a20;
+    color: #ffffff;
+  }
+}
+
+/* ── Hero micro-interactions ─────────────────────────────── */
+@layer utilities {
+  .hero-cta-primary {
+    transition: background 0.18s ease, box-shadow 0.18s ease, transform 0.15s ease;
+  }
+  .hero-cta-primary:hover {
+    background: linear-gradient(135deg, #b08a28 0%, #9e7a20 100%);
+    box-shadow: 0 6px 20px rgba(158, 122, 32, 0.38), inset 0 1px 0 rgba(255,255,255,0.1);
+    transform: translateY(-1px);
+  }
+  .hero-cta-primary:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+  }
+  .hero-cta-secondary {
+    transition: border-color 0.18s ease, color 0.18s ease, background 0.18s ease;
+  }
+  .hero-cta-secondary:hover {
+    border-color: rgba(255, 255, 255, 0.52);
+    color: rgba(255, 255, 255, 1);
+    background: rgba(255, 255, 255, 0.05);
+  }
+  .navbar-cta {
+    transition: opacity 0.18s ease, box-shadow 0.18s ease, transform 0.15s ease;
+  }
+  .navbar-cta:hover {
+    opacity: 0.88;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  }
+  .navbar-cta:active {
+    transform: translateY(0);
+  }
+  /* Social strip — used in SocialStrip section */
+  .social-strip-btn:hover {
+    border-color: #9e7a20 !important;
+    color: #9e7a20 !important;
+    background: rgba(158, 122, 32, 0.08);
+    box-shadow: 0 4px 16px rgba(158, 122, 32, 0.2), 0 0 0 3px rgba(158, 122, 32, 0.08);
+    transform: translateY(-2px);
+  }
+  .social-strip-btn:active {
+    transform: translateY(0);
+    box-shadow: none;
+  }
+  .social-strip-btn:focus-visible {
+    outline: 2px solid #9e7a20;
+    outline-offset: 3px;
+  }
+  /* Footer navigation and service links */
+  .footer-link:hover {
+    color: rgba(255, 255, 255, 0.92) !important;
   }
 }
 

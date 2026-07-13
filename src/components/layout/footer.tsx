@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { SITE_NAME, CONTACT, NAV_LINKS } from "@/lib/constants";
 
@@ -15,26 +16,34 @@ export function Footer() {
 
   return (
     <footer className="bg-brand-charcoal text-brand-stone" role="contentinfo">
+      {/* Amber threshold — anchors the footer to the brand */}
+      <div className="h-px bg-brand-accent/40" />
       {/* Main footer grid */}
-      <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+      <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
-          {/* Company */}
+          {/* Company — logo + description */}
           <div className="lg:col-span-1">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="flex h-9 w-9 items-center justify-center rounded bg-brand-accent">
-                <span className="text-sm font-bold text-white tracking-tight">
-                  PG
-                </span>
+            <Link
+              href="/"
+              aria-label={`${SITE_NAME} — Home`}
+              className="inline-block mb-6"
+            >
+              {/*
+               * Logo has white background — wrap in a white rounded container
+               * so it renders correctly on the dark charcoal footer.
+               * Width constrained so it doesn't dominate the column.
+               */}
+              <div className="inline-flex items-center justify-center rounded-md bg-white px-3 py-2">
+                <Image
+                  src="/images/logo.png"
+                  alt="Panchasheel Geo Infra Solutions — company logo"
+                  width={160}
+                  height={160}
+                  className="h-16 w-auto object-contain"
+                  quality={95}
+                />
               </div>
-              <div>
-                <span className="block text-sm font-semibold leading-tight text-white">
-                  Panchsheel
-                </span>
-                <span className="block text-[11px] font-medium leading-tight text-brand-stone tracking-wide">
-                  Geo Infra Solution
-                </span>
-              </div>
-            </div>
+            </Link>
             <p className="text-sm leading-relaxed text-brand-concrete max-w-xs">
               Professional geospatial and infrastructure surveying across India.
               Precision survey data for engineering, construction, and
@@ -44,7 +53,8 @@ export function Footer() {
 
           {/* Navigation */}
           <div>
-            <h3 className="text-xs font-semibold uppercase tracking-[0.15em] text-white mb-6">
+            <h3 className="inline-flex items-center gap-2 text-[0.62rem] font-semibold uppercase tracking-[0.25em] text-brand-stone/60 mb-6">
+              <span className="block h-px w-3 bg-brand-accent/50" aria-hidden="true" />
               Navigation
             </h3>
             <ul className="space-y-3">
@@ -63,7 +73,8 @@ export function Footer() {
 
           {/* Services */}
           <div>
-            <h3 className="text-xs font-semibold uppercase tracking-[0.15em] text-white mb-6">
+            <h3 className="inline-flex items-center gap-2 text-[0.62rem] font-semibold uppercase tracking-[0.25em] text-brand-stone/60 mb-6">
+              <span className="block h-px w-3 bg-brand-accent/50" aria-hidden="true" />
               Services
             </h3>
             <ul className="space-y-3">
@@ -82,7 +93,8 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="text-xs font-semibold uppercase tracking-[0.15em] text-white mb-6">
+            <h3 className="inline-flex items-center gap-2 text-[0.62rem] font-semibold uppercase tracking-[0.25em] text-brand-stone/60 mb-6">
+              <span className="block h-px w-3 bg-brand-accent/50" aria-hidden="true" />
               Contact
             </h3>
             <ul className="space-y-4">
@@ -131,14 +143,13 @@ export function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-white/10">
-        <div className="mx-auto max-w-7xl px-6 py-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-brand-concrete">
-            © {currentYear} {SITE_NAME}. All rights reserved.
+      <div className="border-t border-white/8">
+        <div className="mx-auto max-w-7xl px-6 py-5 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-[0.65rem] text-brand-concrete tracking-wide">
+            © {currentYear} Panchsheel Geo Infra Solution. All rights reserved.
           </p>
-          <p className="text-xs text-brand-concrete">
-            Headquartered in {CONTACT.address.city},{" "}
-            {CONTACT.address.state}. Serving projects across India.
+          <p className="text-[0.65rem] text-brand-concrete/60 tracking-wide">
+            Bhopal, Madhya Pradesh &nbsp;·&nbsp; PAN India operations
           </p>
         </div>
       </div>

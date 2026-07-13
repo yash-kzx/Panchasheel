@@ -8,14 +8,14 @@ export function AboutSection() {
   return (
     <section
       id="about"
-      className="py-24 lg:py-32 bg-brand-warm"
+      className="py-28 lg:py-40 bg-brand-warm"
       aria-labelledby="about-heading"
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           {/* Left — image */}
           <Reveal direction="left" delay={0.1}>
-            <div className="relative aspect-[4/3] overflow-hidden rounded-sm bg-brand-stone/20">
+            <div className="relative aspect-[5/4] overflow-hidden rounded-sm bg-brand-stone/20">
               <Image
                 src="/images/about-survey-equipment.jpg"
                 alt="Professional DGPS equipment set up at an infrastructure project site"
@@ -41,7 +41,7 @@ export function AboutSection() {
             <Reveal direction="up" delay={0.25}>
               <h2
                 id="about-heading"
-                className="mt-4 text-3xl sm:text-4xl font-bold leading-tight tracking-tight text-brand-charcoal"
+                className="mt-4 text-3xl sm:text-[2.25rem] lg:text-[2.75rem] font-bold leading-[1.08] tracking-tight text-brand-charcoal"
               >
                 Engineering precision.
                 <br />
@@ -69,18 +69,21 @@ export function AboutSection() {
             </Reveal>
 
             <Reveal direction="up" delay={0.45}>
-              <div className="mt-10 grid grid-cols-2 gap-6">
+              <div className="mt-10 border-t border-border">
                 {[
-                  { label: "Precision", value: "Sub-centimetre accuracy" },
-                  { label: "Reach", value: "PAN India operations" },
-                  { label: "Approach", value: "Technology-driven" },
-                  { label: "Delivery", value: "On-schedule execution" },
+                  { label: "Positioning Accuracy", value: "Sub-centimetre DGPS" },
+                  { label: "Operations", value: "PAN India" },
+                  { label: "Survey Method", value: "Technology-driven field methodology" },
+                  { label: "Project Delivery", value: "On-schedule execution" },
                 ].map((item) => (
-                  <div key={item.label} className="border-l-2 border-brand-accent pl-4">
-                    <p className="text-xs font-semibold uppercase tracking-[0.15em] text-brand-concrete mb-1">
+                  <div
+                    key={item.label}
+                    className="flex items-baseline justify-between py-4 border-b border-border gap-8"
+                  >
+                    <p className="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-brand-concrete shrink-0">
                       {item.label}
                     </p>
-                    <p className="text-sm font-medium text-brand-charcoal">
+                    <p className="text-sm font-medium text-brand-charcoal text-right">
                       {item.value}
                     </p>
                   </div>

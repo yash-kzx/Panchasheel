@@ -8,12 +8,12 @@ export function TechnologySection() {
   return (
     <section
       id="technology"
-      className="py-24 lg:py-32 bg-brand-warm"
+      className="py-20 lg:py-28 bg-brand-warm"
       aria-labelledby="technology-heading"
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Header */}
-        <div className="max-w-2xl mb-16 lg:mb-20">
+        <div className="max-w-2xl mb-12 lg:mb-16">
           <Reveal direction="up" delay={0.1}>
             <SectionLabel>Technology</SectionLabel>
           </Reveal>
@@ -44,11 +44,17 @@ export function TechnologySection() {
               direction="up"
               delay={0.05 + index * 0.06}
             >
-              <article className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 py-8 lg:py-10 border-t border-border items-baseline">
+              <article className="group relative grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 py-6 lg:py-8 border-t border-border items-baseline pl-5">
+                {/* Amber accent bar */}
+                <div
+                  className="absolute left-0 inset-y-0 w-0.5 bg-brand-accent origin-top scale-y-0 transition-transform duration-300 ease-out group-hover:scale-y-100"
+                  aria-hidden="true"
+                />
+
                 {/* Number */}
                 <div className="md:col-span-1">
                   <span
-                    className="text-xs font-mono text-brand-concrete tabular-nums"
+                    className="text-xs font-mono text-brand-concrete tabular-nums transition-colors duration-200 group-hover:text-brand-accent"
                     aria-hidden="true"
                   >
                     {String(index + 1).padStart(2, "0")}
@@ -57,7 +63,7 @@ export function TechnologySection() {
 
                 {/* Name & full name */}
                 <div className="md:col-span-3">
-                  <h3 className="text-lg font-semibold text-brand-charcoal">
+                  <h3 className="text-base font-semibold text-brand-charcoal transition-colors duration-200 group-hover:text-brand-accent">
                     {tech.name}
                   </h3>
                   <p className="text-xs text-brand-concrete mt-1">

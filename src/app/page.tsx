@@ -2,6 +2,7 @@ import { Navbar, Footer } from "@/components/layout";
 import {
   HeroSection,
   AboutSection,
+  SignatureBanner,
   ServicesSection,
   IndustriesSection,
   TechnologySection,
@@ -15,6 +16,7 @@ export default function HomePage() {
       <main id="main-content">
         <HeroSection />
         <AboutSection />
+        <SignatureBanner />
         <ServicesSection />
         <IndustriesSection />
         <TechnologySection />
