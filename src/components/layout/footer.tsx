@@ -30,22 +30,15 @@ export function Footer() {
               aria-label={`${SITE_NAME} — Home`}
               className="inline-block mb-6"
             >
-              {/*
-               * Logo has white background — wrap in a white rounded container
-               * so it renders correctly on the dark charcoal footer.
-               * Width constrained so it doesn't dominate the column.
-               */}
-              <div className="inline-flex items-center justify-center rounded-md bg-white px-3 py-2">
-                <Image
-                  src="/images/logo.webp"
-                  alt="Panchasheel Geo Infra Solutions — company logo"
-                  width={160}
-                  height={160}
-                  className="h-16 w-auto object-contain"
-                  quality={95}
-                  unoptimized
-                />
-              </div>
+              <Image
+                src="/images/footer-logo.png"
+                alt="Panchasheel Geo Infra Solutions — company logo"
+                width={370}
+                height={100}
+                className="h-20 w-auto object-contain"
+                quality={95}
+                unoptimized
+              />
             </Link>
             <p className="text-sm leading-relaxed text-brand-concrete max-w-xs">
               Professional geospatial and infrastructure surveying across India.
@@ -149,7 +142,7 @@ export function Footer() {
       <div className="border-t border-white/8">
         <div className="mx-auto max-w-7xl px-6 py-5 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-[0.65rem] text-brand-concrete tracking-wide">
-            © {currentYear} Panchsheel Geo Infra Solution. All rights reserved.
+            © {currentYear} Panchasheel Geo Infra Solution. All rights reserved.
           </p>
           <p className="text-[0.65rem] text-brand-concrete/60 tracking-wide">
             Bhopal, Madhya Pradesh &nbsp;·&nbsp; PAN India operations
