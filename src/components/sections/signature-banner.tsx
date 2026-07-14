@@ -25,28 +25,26 @@ export function SignatureBanner() {
       </div>
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8 py-36 lg:py-52">
-        <div className="max-w-2xl">
+        <div className="max-w-3xl">
           <Reveal direction="up">
-            <span className="inline-flex items-center gap-2.5 text-[0.65rem] font-semibold uppercase tracking-[0.28em] text-brand-accent mb-8">
-              <span className="block h-px w-4 bg-current" aria-hidden="true" />
+            <span className="inline-flex items-center gap-2.5 text-xs sm:text-[0.85rem] font-bold uppercase tracking-[0.28em] text-brand-accent mb-8">
+              <span className="block h-px w-5 bg-current" aria-hidden="true" />
               Our Approach
             </span>
           </Reveal>
 
           <Reveal direction="up">
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.06] tracking-tight text-white">
-              Ground truth for
-              <br />
-              India&apos;s infrastructure.
+            <h2 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-bold leading-[1.06] tracking-tight text-white text-balance">
+              Engineering decisions start with accurate survey data.
             </h2>
           </Reveal>
 
           <Reveal direction="up">
             <p className="mt-8 text-base lg:text-lg leading-relaxed text-brand-concrete max-w-md">
-              Every deliverable we produce — whether a DGPS control network, a
-              LiDAR point cloud, or a drone orthomosaic — is anchored to
-              verified ground truth. Engineering decisions are only as reliable
-              as the data beneath them.
+              From highways and railways to mining, utilities, and renewable
+              energy projects, we capture precise field data and deliver
+              reliable engineering outputs that consultants, contractors, EPC
+              companies, and infrastructure developers can confidently build upon.
             </p>
           </Reveal>
 
