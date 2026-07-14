@@ -19,6 +19,13 @@ export const CONTACT = {
   },
 } as const;
 
+export const FOUNDER = {
+  name: "Raja Pathekar",
+  title: "Founder, Panchasheel Geo Infra Solutions",
+  // ← Update this URL when the LinkedIn profile is ready
+  linkedIn: "https://www.linkedin.com/in/rajapathekar/",
+} as const;
+
 export const NAV_LINKS = [
   { label: "Home", href: "/" },
   { label: "About", href: "#about" },

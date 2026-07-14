@@ -103,7 +103,7 @@ export function CTASection() {
   return (
     <section
       id="contact"
-      className="relative py-28 lg:py-40 bg-brand-warm overflow-hidden"
+      className="relative py-20 lg:py-28 bg-brand-warm overflow-hidden"
       aria-labelledby="cta-heading"
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
