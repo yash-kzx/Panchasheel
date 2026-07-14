@@ -196,7 +196,7 @@ export function HeroSection() {
                       className="text-sm font-medium"
                       style={{ color: "rgba(255,255,255,0.82)", lineHeight: "1.6" }}
                     >
-                      DGPS &middot; UAV &middot; LiDAR &middot; Total Station
+                      DGPS &middot; UAV &middot; LiDAR &middot; Thermal &middot; Total Station
                     </dd>
                   </div>
 

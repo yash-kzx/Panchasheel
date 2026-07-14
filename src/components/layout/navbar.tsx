@@ -24,7 +24,29 @@ export function Navbar() {
     };
   }, [mobileOpen]);
 
+  /**
+   * Close the mobile menu first, then defer the anchor scroll to the next
+   * animation frame so the overlay is fully unmounted (and body overflow
+   * restored) before the page begins scrolling.
+   */
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (!mobileOpen) return; // desktop — do nothing special
+    e.preventDefault();
+    setMobileOpen(false);
+    requestAnimationFrame(() => {
+      const id = href.replace(/^\/?#/, "");
+      const target = document.getElementById(id);
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      } else if (href.startsWith("#")) {
+        // fallback for hash-only hrefs
+        window.location.hash = href;
+      }
+    });
+  };
+
   return (
+    <>
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
@@ -168,50 +190,64 @@ export function Navbar() {
           )}
         </button>
       </nav>
+    </header>
 
-      {/* Mobile menu panel */}
-      {mobileOpen && (
-        <div
-          id="mobile-menu"
-          className="lg:hidden fixed inset-0 top-[104px] z-40 bg-brand-warm"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Mobile navigation"
-        >
-          <div className="flex flex-col px-6 py-8">
-            <ul className="flex flex-col gap-1">
-              {NAV_LINKS.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="block py-3 text-lg font-medium text-brand-charcoal border-b border-border"
-                    onClick={() => setMobileOpen(false)}
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+    {/* Mobile menu panel — rendered OUTSIDE <header> so it escapes the header's
+        stacking context and can cover the full viewport without clipping. */}
+    {mobileOpen && (
+      <div
+        id="mobile-menu"
+        className="lg:hidden"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Mobile navigation"
+        style={{
+          position: "fixed",
+          inset: 0,
+          width: "100vw",
+          height: "100dvh",
+          zIndex: 9999,
+          overflowY: "auto",
+          backgroundColor: "var(--color-brand-warm, #fdf8f0)",
+        }}
+      >
+        {/* Spacer that matches the navbar height so links sit below the bar */}
+        <div style={{ height: "104px" }} aria-hidden="true" />
 
-            <div className="mt-8 flex flex-col gap-4">
-              <a
-                href={`tel:${CONTACT.phone[0].replace(/\s/g, "")}`}
-                className="flex items-center gap-2 text-sm font-medium text-brand-steel"
-              >
-                <Phone className="h-4 w-4" aria-hidden="true" />
-                <span>{CONTACT.phone[0]}</span>
-              </a>
-              <Link
-                href="#contact"
-                className="inline-flex items-center justify-center rounded bg-brand-charcoal px-5 py-3 text-sm font-medium text-brand-warm"
-                onClick={() => setMobileOpen(false)}
-              >
-                Request Quote
-              </Link>
-            </div>
+        <div className="flex flex-col px-6 py-8">
+          <ul className="flex flex-col gap-1">
+            {NAV_LINKS.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className="block py-3 text-lg font-medium text-brand-charcoal border-b border-border"
+                  onClick={(e) => handleNavClick(e, link.href)}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          <div className="mt-8 flex flex-col gap-4">
+            <a
+              href={`tel:${CONTACT.phone[0].replace(/\s/g, "")}`}
+              className="flex items-center gap-2 text-sm font-medium text-brand-steel"
+            >
+              <Phone className="h-4 w-4" aria-hidden="true" />
+              <span>{CONTACT.phone[0]}</span>
+            </a>
+            <Link
+              href="#contact"
+              className="inline-flex items-center justify-center rounded bg-brand-charcoal px-5 py-3 text-sm font-medium text-brand-warm"
+              onClick={(e) => handleNavClick(e, "#contact")}
+            >
+              Request Quote
+            </Link>
           </div>
         </div>
-      )}
-    </header>
+      </div>
+    )}
+    </>
   );
 }
