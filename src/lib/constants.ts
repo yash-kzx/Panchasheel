@@ -50,9 +50,9 @@ export const SERVICES = [
       "Detailed ground-level surveys recording natural and man-made features, elevation data, and land contours for engineering design.",
   },
   {
-    title: "Engineering Survey",
+    title: "Transmission Line Survey",
     description:
-      "Precision surveys supporting structural design, alignment verification, earthwork calculation, and construction layout.",
+      "Comprehensive surveys for power transmission corridors, including route alignment, tower spotting, profile surveys, right-of-way mapping, and detailed topographic data to support transmission line planning, design, construction, and maintenance.",
   },
   {
     title: "Mining Survey",

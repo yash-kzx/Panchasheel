@@ -26,6 +26,33 @@ export function Navbar() {
     };
   }, [mobileOpen]);
 
+  // Handle mobile menu history state for the back button
+  useEffect(() => {
+    const handlePopState = () => {
+      // When back button is pressed, just close the menu if it's open.
+      setMobileOpen((prev) => {
+        if (prev) return false;
+        return prev;
+      });
+    };
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
+
+  const openMenu = () => {
+    setMobileOpen(true);
+    // Push a dummy state so the back button has something to pop
+    window.history.pushState({ menuOpen: true }, "");
+  };
+
+  const closeMenu = () => {
+    setMobileOpen(false);
+    // Clean up the dummy state if we are closing via the X button
+    if (window.history.state?.menuOpen) {
+      window.history.back();
+    }
+  };
+
   /**
    * Close the mobile menu first, then defer the anchor scroll to the next
    * animation frame so the overlay is fully unmounted (and body overflow
@@ -35,6 +62,12 @@ export function Navbar() {
     if (!mobileOpen) return; // desktop — do nothing special
     e.preventDefault();
     setMobileOpen(false);
+    
+    // Replace the dummy menu state with the target hash to keep history clean
+    if (window.history.state?.menuOpen) {
+      window.history.replaceState(null, "", href);
+    }
+
     requestAnimationFrame(() => {
       const id = href.replace(/^\/?#/, "");
       const target = document.getElementById(id);
@@ -180,7 +213,7 @@ export function Navbar() {
           className={`lg:hidden flex items-center justify-center h-10 w-10 rounded transition-colors ${
             scrolled ? "text-brand-charcoal" : "text-white"
           }`}
-          onClick={() => setMobileOpen(!mobileOpen)}
+          onClick={() => (mobileOpen ? closeMenu() : openMenu())}
           aria-expanded={mobileOpen}
           aria-controls="mobile-menu"
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
