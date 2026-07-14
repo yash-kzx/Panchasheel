@@ -120,47 +120,76 @@ const INDUSTRIES = [
   },
 ] as const;
 
+// Render: [clone of ALL] [real items] [clone of ALL]
+// On scroll, when user enters the clone zone we silently jump scrollLeft
+// back into the real zone by exactly one full-set width. No animation,
+// no visible jump — the content is pixel-identical at that position.
+const ITEMS = [...INDUSTRIES, ...INDUSTRIES, ...INDUSTRIES];
+
+// Utility: get card width + gap from the DOM
+function getCardStep(track: HTMLDivElement): number {
+  const card = track.querySelector("article") as HTMLElement | null;
+  if (!card) return 280;
+  return card.closest(".industry-card-wrapper")
+    ? (card.closest(".industry-card-wrapper") as HTMLElement).offsetWidth + 16
+    : card.offsetWidth + 16;
+}
+
 export function IndustriesSection() {
   const trackRef = useRef<HTMLDivElement>(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
   const [isDragging, setIsDragging] = useState(false);
   const [dragStartX, setDragStartX] = useState(0);
   const [dragScrollLeft, setDragScrollLeft] = useState(0);
   const [showArrows, setShowArrows] = useState(false);
 
-  /* ── Scroll state sync ────────────────────────── */
-  const syncScrollState = useCallback(() => {
-    const el = trackRef.current;
-    if (!el) return;
-    setCanScrollLeft(el.scrollLeft > 8);
-    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 8);
-  }, []);
-
+  // ── Seed scroll to middle copy on mount ──────────────────────────
   useEffect(() => {
     const el = trackRef.current;
     if (!el) return;
-    syncScrollState();
-    el.addEventListener("scroll", syncScrollState, { passive: true });
-    window.addEventListener("resize", syncScrollState);
-    return () => {
-      el.removeEventListener("scroll", syncScrollState);
-      window.removeEventListener("resize", syncScrollState);
-    };
-  }, [syncScrollState]);
+    // Wait one frame so layout is complete and card widths are measurable
+    const raf = requestAnimationFrame(() => {
+      const step = getCardStep(el);
+      // Middle copy starts at index N (INDUSTRIES.length cards into the track)
+      // We scroll to that position so the user starts seeing the real set.
+      el.scrollLeft = step * INDUSTRIES.length;
+    });
+    return () => cancelAnimationFrame(raf);
+  }, []);
 
-  /* ── Arrow navigation ─────────────────────────── */
+  // ── Infinite-loop: silent repositioning on scroll ─────────────────
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el) return;
+
+    const onScroll = () => {
+      const step = getCardStep(el);
+      const setWidth = step * INDUSTRIES.length;
+
+      // If the user has scrolled into the leading clone (before the real set)
+      if (el.scrollLeft < setWidth - el.clientWidth / 2) {
+        // Jump forward by one full set — lands on the same visual position in the real set
+        el.scrollLeft += setWidth;
+      }
+      // If the user has scrolled into the trailing clone (past the real set)
+      else if (el.scrollLeft >= setWidth * 2) {
+        // Jump backward by one full set
+        el.scrollLeft -= setWidth;
+      }
+    };
+
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => el.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // ── Arrow navigation ──────────────────────────────────────────────
   const scroll = useCallback((dir: "left" | "right") => {
     const el = trackRef.current;
     if (!el) return;
-    const card = el.querySelector("article") as HTMLElement | null;
-    if (!card) return;
-    const gap = 16;
-    const step = card.offsetWidth + gap;
+    const step = getCardStep(el);
     el.scrollBy({ left: dir === "left" ? -step : step, behavior: "smooth" });
   }, []);
 
-  /* ── Click-and-drag (desktop) ─────────────────── */
+  // ── Click-and-drag (desktop) ──────────────────────────────────────
   const onMouseDown = useCallback((e: React.MouseEvent) => {
     const el = trackRef.current;
     if (!el) return;
@@ -246,23 +275,17 @@ export function IndustriesSection() {
       <Reveal direction="up">
         <div className="relative">
 
-          {/* Left fade indicator */}
+          {/* Left fade indicator — always shown since carousel is infinite */}
           <div
-            className="pointer-events-none absolute left-0 top-0 bottom-0 w-20 z-10 transition-opacity duration-300"
-            style={{
-              background: "linear-gradient(to right, #1a2436 0%, transparent 100%)",
-              opacity: canScrollLeft ? 1 : 0,
-            }}
+            className="pointer-events-none absolute left-0 top-0 bottom-0 w-20 z-10"
+            style={{ background: "linear-gradient(to right, #1a2436 0%, transparent 100%)" }}
             aria-hidden="true"
           />
 
           {/* Right fade indicator */}
           <div
-            className="pointer-events-none absolute right-0 top-0 bottom-0 w-20 z-10 transition-opacity duration-300"
-            style={{
-              background: "linear-gradient(to left, #1a2436 0%, transparent 100%)",
-              opacity: canScrollRight ? 1 : 0,
-            }}
+            className="pointer-events-none absolute right-0 top-0 bottom-0 w-20 z-10"
+            style={{ background: "linear-gradient(to left, #1a2436 0%, transparent 100%)" }}
             aria-hidden="true"
           />
 
@@ -272,8 +295,7 @@ export function IndustriesSection() {
             aria-label="Scroll industries left"
             className="absolute left-4 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-11 h-11 rounded-full bg-brand-charcoal/80 border border-white/10 text-white backdrop-blur-sm transition-all duration-200 hover:bg-brand-accent hover:border-brand-accent hover:text-brand-charcoal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent"
             style={{
-              opacity: canScrollLeft && showArrows ? 1 : 0,
-              pointerEvents: canScrollLeft ? "auto" : "none",
+              opacity: showArrows ? 1 : 0,
               transition: "opacity 200ms ease, background-color 200ms ease, border-color 200ms ease, color 200ms ease",
             }}
           >
@@ -286,15 +308,14 @@ export function IndustriesSection() {
             aria-label="Scroll industries right"
             className="absolute right-4 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-11 h-11 rounded-full bg-brand-charcoal/80 border border-white/10 text-white backdrop-blur-sm transition-all duration-200 hover:bg-brand-accent hover:border-brand-accent hover:text-brand-charcoal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent"
             style={{
-              opacity: canScrollRight && showArrows ? 1 : 0,
-              pointerEvents: canScrollRight ? "auto" : "none",
+              opacity: showArrows ? 1 : 0,
               transition: "opacity 200ms ease, background-color 200ms ease, border-color 200ms ease, color 200ms ease",
             }}
           >
             <ChevronRight className="h-5 w-5" aria-hidden="true" />
           </button>
 
-          {/* Scrollable track */}
+          {/* Scrollable track — scroll-snap REMOVED for seamless infinite reset */}
           <div
             ref={trackRef}
             role="list"
@@ -308,12 +329,11 @@ export function IndustriesSection() {
               gap: "16px",
               overflowX: "auto",
               overflowY: "hidden",
-              scrollSnapType: "x mandatory",
-              scrollBehavior: "smooth",
+              // scroll-snap intentionally omitted — it fights the silent scrollLeft reset
+              scrollBehavior: "auto",
               WebkitOverflowScrolling: "touch",
               paddingLeft: "max(24px, calc((100vw - 1280px) / 2 + 32px))",
               paddingRight: "max(24px, calc((100vw - 1280px) / 2 + 32px))",
-              /* Extra vertical padding so the lifted card isn't clipped */
               paddingTop: "16px",
               paddingBottom: "32px",
               cursor: isDragging ? "grabbing" : "grab",
@@ -321,24 +341,17 @@ export function IndustriesSection() {
               scrollbarWidth: "none",
             } as React.CSSProperties}
           >
-            {INDUSTRIES.map((industry) => (
-              /*
-               * Lift wrapper — handles translateY and drop-shadow.
-               * Kept separate from the inner card so overflow-hidden
-               * on the card doesn't clip the lifted state.
-               */
+            {ITEMS.map((industry, idx) => (
               <div
-                key={industry.name}
-                className="group flex-none"
+                key={`${industry.name}-${idx}`}
+                className="industry-card-wrapper group flex-none"
+                aria-hidden={idx < INDUSTRIES.length || idx >= INDUSTRIES.length * 2}
                 style={{
                   width: "clamp(240px, calc((100vw - 160px) / 1.3), 320px)",
                   aspectRatio: "3 / 4",
-                  scrollSnapAlign: "start",
                   flexShrink: 0,
-                  /* Lift + shadow on hover via CSS transition */
                   transition: "transform 280ms cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 280ms ease",
                 }}
-                /* Inline hover via onMouseEnter/Leave since Tailwind can't animate arbitrary filter */
                 onMouseEnter={(e) => {
                   const el = e.currentTarget;
                   el.style.transform = "translateY(-7px)";
@@ -357,7 +370,7 @@ export function IndustriesSection() {
                   {/* Photography — zooms on hover */}
                   <Image
                     src={industry.image}
-                    alt={industry.imageAlt}
+                    alt={idx >= INDUSTRIES.length && idx < INDUSTRIES.length * 2 ? industry.imageAlt : ""}
                     fill
                     draggable={false}
                     className="object-cover select-none transition-transform duration-700 ease-out group-hover:scale-[1.05]"
@@ -387,7 +400,7 @@ export function IndustriesSection() {
                    * revealing the capabilities list beneath it.
                    */}
                   <div
-                    className="absolute left-0 right-0 bottom-0 p-5 transition-transform duration-280 ease-out group-hover:-translate-y-10"
+                    className="industry-panel absolute left-0 right-0 bottom-0 p-5 transition-transform duration-280 ease-out group-hover:-translate-y-10"
                     style={{ willChange: "transform" }}
                   >
                     {/* Industry title — always visible */}
@@ -395,9 +408,9 @@ export function IndustriesSection() {
                       {industry.name}
                     </h3>
 
-                    {/* Capabilities list — fades in on hover */}
+                    {/* Capabilities list — fades in on hover (always visible on mobile) */}
                     <ul
-                      className="space-y-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 delay-75"
+                      className="industry-caps space-y-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 delay-75"
                       aria-label={`${industry.name} capabilities`}
                     >
                       {industry.capabilities.map((cap) => (
@@ -416,7 +429,6 @@ export function IndustriesSection() {
                     </ul>
                   </div>
 
-
                   {/* Gold accent line — grows full width on hover */}
                   <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-brand-accent transition-all duration-500 ease-out group-hover:w-full" />
 
@@ -427,10 +439,20 @@ export function IndustriesSection() {
             ))}
           </div>
 
-          {/* Hide webkit scrollbar */}
+          {/* Hide webkit scrollbar + always-visible mobile overlay */}
           <style>{`
             [role="list"][aria-label="Industries served"]::-webkit-scrollbar {
               display: none;
+            }
+            /* On touch/mobile devices (hover: none), permanently show the
+               content panel and capabilities — no tap required.            */
+            @media (hover: none) {
+              .industry-panel {
+                transform: translateY(-8px) !important;
+              }
+              .industry-caps {
+                opacity: 1 !important;
+              }
             }
           `}</style>
         </div>
@@ -440,7 +462,7 @@ export function IndustriesSection() {
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8 mt-6 flex items-center gap-3" aria-hidden="true">
         <div className="h-px flex-1 bg-white/8" />
         <p className="text-[11px] font-medium tracking-[0.15em] uppercase text-brand-concrete/60">
-          Scroll to explore
+          Swipe to explore
         </p>
         <div className="h-px flex-1 bg-white/8" />
       </div>
