@@ -49,12 +49,12 @@ export function Navbar() {
            * On the transparent hero: white logo opacity 1, color logo opacity 0.
            * On scroll: color logo opacity 1, white logo opacity 0.
            * 300ms ease crossfade, zero layout shift.
-           * Desktop height: 100px (~20% increase from 84px).
-           * Responsive: clamp(66px, 7.7vw, 100px) scales gracefully across viewports.
+           * Desktop height: 85px.
+           * Responsive: clamp(56px, 6.5vw, 85px) scales gracefully across viewports.
            */}
           <div style={{
             position: "relative",
-            height: "clamp(66px, 7.7vw, 100px)",
+            height: "clamp(56px, 6.5vw, 85px)",
             width: "auto",
             display: "flex",
             alignItems: "center",
@@ -67,9 +67,9 @@ export function Navbar() {
               height={100}
               className="w-auto object-contain"
               style={{
-                height: "clamp(66px, 7.7vw, 100px)",
+                height: "clamp(56px, 6.5vw, 85px)",
                 width: "auto",
-                maxHeight: "100px",
+                maxHeight: "85px",
                 display: "block",
                 opacity: scrolled ? 1 : 0,
                 transition: "opacity 300ms ease",
@@ -86,9 +86,9 @@ export function Navbar() {
               height={100}
               className="w-auto object-contain"
               style={{
-                height: "clamp(66px, 7.7vw, 100px)",
+                height: "clamp(56px, 6.5vw, 85px)",
                 width: "auto",
-                maxHeight: "100px",
+                maxHeight: "85px",
                 position: "absolute",
                 top: 0,
                 left: 0,
