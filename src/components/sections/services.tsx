@@ -14,10 +14,10 @@ export function ServicesSection() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Header — left-aligned, editorial */}
         <div className="max-w-2xl mb-12 lg:mb-16">
-          <Reveal direction="up" delay={0.1}>
+          <Reveal direction="up">
             <SectionLabel>Services</SectionLabel>
           </Reveal>
-          <Reveal direction="up" delay={0.2}>
+          <Reveal direction="up">
             <h2
               id="services-heading"
               className="mt-4 text-3xl sm:text-4xl font-bold leading-tight tracking-tight text-brand-charcoal"
@@ -27,7 +27,7 @@ export function ServicesSection() {
               complex infrastructure.
             </h2>
           </Reveal>
-          <Reveal direction="up" delay={0.3}>
+          <Reveal direction="up">
             <p className="mt-4 text-base leading-relaxed text-brand-slate">
               From initial reconnaissance to final deliverables — our survey
               services cover every stage of infrastructure and engineering

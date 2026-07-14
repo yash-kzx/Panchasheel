@@ -33,11 +33,11 @@ export function Reveal({
   className,
   delay = 0,
   direction = "up",
-  duration = 0.5,
+  duration = 0.4,
   once = true,
 }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once, margin: "-60px" });
+  const isInView = useInView(ref, { once, amount: 0.15 });
   const controls = useAnimation();
 
   const offset = directionOffsets[direction];
@@ -70,7 +70,7 @@ export function Reveal({
       transition={{
         duration,
         delay,
-        ease: [0.25, 0.1, 0.25, 1],
+        ease: "easeOut",
       }}
     >
       {children}

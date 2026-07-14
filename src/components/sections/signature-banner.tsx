@@ -12,7 +12,7 @@ export function SignatureBanner() {
       {/* LiDAR visual — right-side dominant */}
       <div className="absolute inset-0">
         <Image
-          src="/images/signature-lidar.jpg"
+          src="/images/signature-lidar.avif"
           alt="LiDAR point cloud visualisation of a highway corridor terrain survey"
           fill
           className="object-cover object-right opacity-70"
@@ -26,14 +26,14 @@ export function SignatureBanner() {
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8 py-36 lg:py-52">
         <div className="max-w-2xl">
-          <Reveal direction="up" delay={0.1}>
+          <Reveal direction="up">
             <span className="inline-flex items-center gap-2.5 text-[0.65rem] font-semibold uppercase tracking-[0.28em] text-brand-accent mb-8">
               <span className="block h-px w-4 bg-current" aria-hidden="true" />
               Our Approach
             </span>
           </Reveal>
 
-          <Reveal direction="up" delay={0.2}>
+          <Reveal direction="up">
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.06] tracking-tight text-white">
               Ground truth for
               <br />
@@ -41,7 +41,7 @@ export function SignatureBanner() {
             </h2>
           </Reveal>
 
-          <Reveal direction="up" delay={0.35}>
+          <Reveal direction="up">
             <p className="mt-8 text-base lg:text-lg leading-relaxed text-brand-concrete max-w-md">
               Every deliverable we produce — whether a DGPS control network, a
               LiDAR point cloud, or a drone orthomosaic — is anchored to
@@ -51,7 +51,7 @@ export function SignatureBanner() {
           </Reveal>
 
           {/* Editorial key claims — NOT a stat block. Specific, verifiable, meaningful. */}
-          <Reveal direction="up" delay={0.45}>
+          <Reveal direction="up">
             <div className="mt-12 flex flex-col sm:flex-row gap-8 border-t border-white/10 pt-10">
               <div className="border-l-2 border-brand-accent pl-5">
                 <p className="text-xs font-semibold uppercase tracking-[0.15em] text-brand-concrete mb-2">

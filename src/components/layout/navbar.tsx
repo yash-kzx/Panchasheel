@@ -3,7 +3,9 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X, Phone } from "lucide-react";
+import Menu from "lucide-react/dist/esm/icons/menu";
+import X from "lucide-react/dist/esm/icons/x";
+import Phone from "lucide-react/dist/esm/icons/phone";
 import { NAV_LINKS, SITE_NAME, CONTACT } from "@/lib/constants";
 
 export function Navbar() {
@@ -83,8 +85,8 @@ export function Navbar() {
           }}>
             {/* Color logo — visible when scrolled */}
             <Image
-              src="/images/navbar-logo.png"
-              alt="Panchasheel Geo Infra Solutions — company logo"
+              src="/images/navbar-logo.webp"
+              alt="Panchasheel Geo Infra Solutions"
               width={370}
               height={100}
               className="w-auto object-contain"
@@ -96,12 +98,12 @@ export function Navbar() {
                 opacity: scrolled ? 1 : 0,
                 transition: "opacity 300ms ease",
               }}
-              priority
               quality={95}
+              unoptimized
             />
             {/* White logo — visible over hero (transparent navbar) */}
             <Image
-              src="/images/navbar-logo-white.png"
+              src="/images/navbar-logo-white.webp"
               alt=""
               aria-hidden="true"
               width={370}
@@ -118,8 +120,8 @@ export function Navbar() {
                 opacity: scrolled ? 0 : 1,
                 transition: "opacity 300ms ease",
               }}
-              priority
               quality={95}
+              unoptimized
             />
           </div>
         </Link>

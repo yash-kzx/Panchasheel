@@ -14,10 +14,10 @@ export function AboutSection() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           {/* Left — image */}
-          <Reveal direction="left" delay={0.1}>
+          <Reveal direction="left">
             <div className="relative aspect-[5/4] overflow-hidden rounded-sm bg-brand-stone/20">
               <Image
-                src="/images/about-survey-equipment.jpg"
+                src="/images/about-survey-equipment.avif"
                 alt="Professional DGPS equipment set up at an infrastructure project site"
                 fill
                 className="object-cover"
@@ -34,11 +34,11 @@ export function AboutSection() {
 
           {/* Right — text content */}
           <div>
-            <Reveal direction="up" delay={0.15}>
+            <Reveal direction="up">
               <SectionLabel>About the Company</SectionLabel>
             </Reveal>
 
-            <Reveal direction="up" delay={0.25}>
+            <Reveal direction="up">
               <h2
                 id="about-heading"
                 className="mt-4 text-3xl sm:text-[2.25rem] lg:text-[2.75rem] font-bold leading-[1.08] tracking-tight text-brand-charcoal"
@@ -49,7 +49,7 @@ export function AboutSection() {
               </h2>
             </Reveal>
 
-            <Reveal direction="up" delay={0.35}>
+            <Reveal direction="up">
               <p className="mt-6 text-base leading-relaxed text-brand-slate">
                 Panchsheel Geo Infra Solution is a geospatial and infrastructure
                 surveying company headquartered in Bhopal, Madhya Pradesh. We
@@ -58,7 +58,7 @@ export function AboutSection() {
               </p>
             </Reveal>
 
-            <Reveal direction="up" delay={0.4}>
+            <Reveal direction="up">
               <p className="mt-4 text-base leading-relaxed text-brand-slate">
                 Our work supports infrastructure development, engineering
                 projects, transportation, mining, renewable energy, and
@@ -68,7 +68,7 @@ export function AboutSection() {
               </p>
             </Reveal>
 
-            <Reveal direction="up" delay={0.45}>
+            <Reveal direction="up">
               <div className="mt-10 border-t border-border">
                 {[
                   { label: "Positioning Accuracy", value: "Sub-centimetre DGPS" },

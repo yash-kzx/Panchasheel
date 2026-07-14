@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
+import ArrowRight from "lucide-react/dist/esm/icons/arrow-right";
 import { Reveal } from "@/components/ui/reveal";
 
 export function HeroSection() {
@@ -14,7 +14,7 @@ export function HeroSection() {
       {/* ── Background image ─────────────────────────────────── */}
       <div className="absolute inset-0">
         <Image
-          src="/images/hero-survey-field.jpg"
+          src="/images/hero-survey-field.avif"
           alt="Survey team conducting DGPS measurement on an infrastructure project site"
           fill
           className="object-cover object-center"
@@ -60,7 +60,7 @@ export function HeroSection() {
           <div className="lg:col-span-8">
 
             {/* Eyebrow */}
-            <Reveal direction="up" delay={0.1}>
+            <Reveal direction="up">
               <div className="flex items-center gap-3 mb-8">
                 <span
                   className="block h-px w-8 flex-shrink-0"
@@ -77,7 +77,7 @@ export function HeroSection() {
             </Reveal>
 
             {/* H1 — three-line rhythm */}
-            <Reveal direction="up" delay={0.18}>
+            <Reveal direction="up">
               <h1
                 className="font-bold leading-[1.04] tracking-tight text-white"
                 style={{
@@ -94,7 +94,7 @@ export function HeroSection() {
             </Reveal>
 
             {/* Body */}
-            <Reveal direction="up" delay={0.3}>
+            <Reveal direction="up">
               <p
                 className="mt-7 leading-[1.75]"
                 style={{
@@ -111,7 +111,7 @@ export function HeroSection() {
             </Reveal>
 
             {/* CTAs */}
-            <Reveal direction="up" delay={0.42}>
+            <Reveal direction="up">
               <div className="mt-11 flex flex-wrap gap-4">
 
                 {/* Primary — solid amber-to-dark */}
@@ -148,7 +148,7 @@ export function HeroSection() {
 
           {/* Right — metadata panel */}
           <div className="lg:col-span-4">
-            <Reveal direction="up" delay={0.54}>
+            <Reveal direction="up">
               <div
                 className="border-t pt-6 lg:border-t-0 lg:border-l lg:pl-8 lg:pt-0"
                 style={{ borderColor: "rgba(255,255,255,0.1)" }}

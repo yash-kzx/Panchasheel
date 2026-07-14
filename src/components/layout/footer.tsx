@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Mail, Phone, MapPin } from "lucide-react";
+import Mail from "lucide-react/dist/esm/icons/mail";
+import Phone from "lucide-react/dist/esm/icons/phone";
+import MapPin from "lucide-react/dist/esm/icons/map-pin";
 import { SITE_NAME, CONTACT, NAV_LINKS } from "@/lib/constants";
 
 const SERVICE_LINKS = [
@@ -35,12 +37,13 @@ export function Footer() {
                */}
               <div className="inline-flex items-center justify-center rounded-md bg-white px-3 py-2">
                 <Image
-                  src="/images/logo.png"
+                  src="/images/logo.webp"
                   alt="Panchasheel Geo Infra Solutions — company logo"
                   width={160}
                   height={160}
                   className="h-16 w-auto object-contain"
                   quality={95}
+                  unoptimized
                 />
               </div>
             </Link>

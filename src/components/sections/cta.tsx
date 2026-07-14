@@ -2,7 +2,10 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { ArrowRight, CheckCircle, Loader2, AlertCircle } from "lucide-react";
+import ArrowRight from "lucide-react/dist/esm/icons/arrow-right";
+import CheckCircle from "lucide-react/dist/esm/icons/check-circle";
+import Loader2 from "lucide-react/dist/esm/icons/loader-2";
+import AlertCircle from "lucide-react/dist/esm/icons/alert-circle";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionLabel } from "@/components/ui/section-label";
 import { EnquirySchema, SERVICE_OPTIONS, type EnquiryData } from "@/lib/enquiry-schema";
@@ -107,11 +110,11 @@ export function CTASection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
           {/* Left — text & form */}
           <div>
-            <Reveal direction="up" delay={0.1}>
+            <Reveal direction="up">
               <SectionLabel>Get in Touch</SectionLabel>
             </Reveal>
 
-            <Reveal direction="up" delay={0.2}>
+            <Reveal direction="up">
               <h2
                 id="cta-heading"
                 className="mt-4 text-3xl sm:text-4xl font-bold leading-tight tracking-tight text-brand-charcoal"
@@ -122,7 +125,7 @@ export function CTASection() {
               </h2>
             </Reveal>
 
-            <Reveal direction="up" delay={0.3}>
+            <Reveal direction="up">
               <p className="mt-6 text-base leading-relaxed text-brand-slate max-w-lg">
                 Share your project scope, site location, and survey
                 requirements. Our team will provide a detailed technical
@@ -132,7 +135,7 @@ export function CTASection() {
 
             {/* ── Success state ─────────────────────────────────────────── */}
             {formState.status === "success" ? (
-              <Reveal direction="up" delay={0.1}>
+              <Reveal direction="up">
                 <div
                   role="alert"
                   aria-live="polite"
@@ -160,7 +163,7 @@ export function CTASection() {
               </Reveal>
             ) : (
               /* ── Form ──────────────────────────────────────────────────── */
-              <Reveal direction="up" delay={0.35}>
+              <Reveal direction="up">
                 <form
                   className="mt-10 space-y-5"
                   onSubmit={handleSubmit}
@@ -239,15 +242,13 @@ export function CTASection() {
                       htmlFor="contact-phone"
                       className="block text-xs font-semibold uppercase tracking-[0.12em] text-brand-slate mb-2"
                     >
-                      Phone Number{" "}
-                      <span className="text-brand-concrete font-normal normal-case tracking-normal">
-                        (optional)
-                      </span>
+                      Phone Number <span className="text-brand-accent" aria-hidden="true">*</span>
                     </label>
                     <input
                       type="tel"
                       id="contact-phone"
                       name="phone"
+                      required
                       autoComplete="tel"
                       disabled={isLoading}
                       value={fields.phone}
@@ -423,10 +424,10 @@ export function CTASection() {
           </div>
 
           {/* Right — image */}
-          <Reveal direction="right" delay={0.2}>
+          <Reveal direction="right">
             <div className="relative aspect-[4/5] overflow-hidden rounded-sm bg-brand-stone/20">
               <Image
-                src="/images/cta-drone-operation.jpg"
+                src="/images/cta-drone-operation.avif"
                 alt="Drone survey operation in progress on a large infrastructure site"
                 fill
                 className="object-cover"

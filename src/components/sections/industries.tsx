@@ -4,12 +4,13 @@ import Image from "next/image";
 import { useRef, useState, useCallback, useEffect } from "react";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionLabel } from "@/components/ui/section-label";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import ChevronLeft from "lucide-react/dist/esm/icons/chevron-left";
+import ChevronRight from "lucide-react/dist/esm/icons/chevron-right";
 
 const INDUSTRIES = [
   {
     name: "Highways",
-    image: "/images/industry-highways.jpg",
+    image: "/images/industry-highways.avif",
     imageAlt: "Aerial drone view of a national highway corridor cutting through Indian terrain",
     capabilities: [
       "Route alignment surveys",
@@ -20,7 +21,7 @@ const INDUSTRIES = [
   },
   {
     name: "Railways",
-    image: "/images/industry-railways.jpg",
+    image: "/images/industry-railways.avif",
     imageAlt: "Aerial drone view of railway tracks disappearing to the horizon",
     capabilities: [
       "Track alignment surveys",
@@ -31,7 +32,7 @@ const INDUSTRIES = [
   },
   {
     name: "Mining",
-    image: "/images/industry-mining.jpg",
+    image: "/images/industry-mining.avif",
     imageAlt: "Aerial photograph of an open-cast mining operation in India",
     capabilities: [
       "Volumetric analysis",
@@ -42,7 +43,7 @@ const INDUSTRIES = [
   },
   {
     name: "Solar Power",
-    image: "/images/industry-solar.jpg",
+    image: "/images/industry-solar.avif",
     imageAlt: "Aerial view of a large solar power plant with geometric panel arrays in Rajasthan",
     capabilities: [
       "Site suitability surveys",
@@ -53,7 +54,7 @@ const INDUSTRIES = [
   },
   {
     name: "Construction",
-    image: "/images/industry-construction.jpg",
+    image: "/images/industry-construction.avif",
     imageAlt: "Active highway construction site with earthmoving machinery and workers",
     capabilities: [
       "Progress tracking",
@@ -64,7 +65,7 @@ const INDUSTRIES = [
   },
   {
     name: "Smart Cities",
-    image: "/images/industry-smart-cities.jpg",
+    image: "/images/industry-smart-cities.avif",
     imageAlt: "Aerial view of a modern smart city at golden hour showing organized urban infrastructure",
     capabilities: [
       "Urban GIS mapping",
@@ -75,7 +76,7 @@ const INDUSTRIES = [
   },
   {
     name: "Transmission Lines",
-    image: "/images/industry-transmission-lines.jpg",
+    image: "/images/industry-transmission-lines.avif",
     imageAlt: "Aerial photography of high-voltage transmission towers stretching to the horizon",
     capabilities: [
       "Corridor surveys",
@@ -86,7 +87,7 @@ const INDUSTRIES = [
   },
   {
     name: "Water Resources",
-    image: "/images/industry-water-resources.jpg",
+    image: "/images/industry-water-resources.avif",
     imageAlt: "Aerial view of a large dam and reservoir at golden hour",
     capabilities: [
       "Reservoir mapping",
@@ -97,7 +98,7 @@ const INDUSTRIES = [
   },
   {
     name: "Irrigation Projects",
-    image: "/images/industry-irrigation-projects.jpg",
+    image: "/images/industry-irrigation-projects.avif",
     imageAlt: "Aerial drone view of large irrigation canals through agricultural farmland",
     capabilities: [
       "Canal surveys",
@@ -108,7 +109,7 @@ const INDUSTRIES = [
   },
   {
     name: "Government Infrastructure",
-    image: "/images/industry-government-infrastructure.jpg",
+    image: "/images/industry-government-infrastructure.avif",
     imageAlt: "Aerial view of major bridge infrastructure project under construction",
     capabilities: [
       "Asset documentation",
@@ -201,7 +202,7 @@ export function IndustriesSection() {
       {/* Subtle textured background */}
       <div className="absolute inset-0 opacity-[0.08]">
         <Image
-          src="/images/industries-infrastructure.jpg"
+          src="/images/industries-infrastructure.avif"
           alt=""
           fill
           className="object-cover"
@@ -215,10 +216,10 @@ export function IndustriesSection() {
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-14 lg:mb-18">
           <div className="lg:col-span-5">
-            <Reveal direction="up" delay={0.1}>
+            <Reveal direction="up">
               <SectionLabel className="text-brand-accent">Industries</SectionLabel>
             </Reveal>
-            <Reveal direction="up" delay={0.2}>
+            <Reveal direction="up">
               <h2
                 id="industries-heading"
                 className="mt-4 text-3xl sm:text-4xl font-bold leading-tight tracking-tight text-white"
@@ -230,7 +231,7 @@ export function IndustriesSection() {
             </Reveal>
           </div>
           <div className="lg:col-span-5 lg:col-start-8 flex items-end">
-            <Reveal direction="up" delay={0.3}>
+            <Reveal direction="up">
               <p className="text-base leading-relaxed text-brand-concrete">
                 Our survey teams operate across India&apos;s most demanding
                 infrastructure sectors — from highway corridors and railway
@@ -242,7 +243,7 @@ export function IndustriesSection() {
       </div>
 
       {/* ── Gallery wrapper — full bleed ──────────── */}
-      <Reveal direction="up" delay={0.2}>
+      <Reveal direction="up">
         <div className="relative">
 
           {/* Left fade indicator */}
