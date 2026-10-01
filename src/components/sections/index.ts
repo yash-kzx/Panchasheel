@@ -1,5 +1,7 @@
 export { HeroSection } from "./hero";
+export { ByTheNumbers } from "./by-the-numbers";
 export { AboutSection } from "./about";
+export { FounderSection } from "./founder";
 export { SignatureBanner } from "./signature-banner";
 export { ServicesSection } from "./services";
 export { IndustriesSection } from "./industries";

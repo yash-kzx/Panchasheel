@@ -127,3 +127,55 @@ export const TECHNOLOGIES = [
       "Advanced thermal imaging surveys for infrastructure inspection, solar plants, utilities, industrial facilities, and condition assessment using high-resolution thermal cameras mounted on drones.",
   },
 ] as const;
+
+/**
+ * "By the Numbers" section statistics.
+ *
+ * Data verification notes:
+ *   – PAN INDIA: confirmed in company profile and hero metadata.
+ *   – 6 SURVEY TECHNOLOGIES: matches TECHNOLOGIES array length
+ *     (DGPS, UAV/Drone, Total Station, LiDAR, GIS Software, Thermal Survey).
+ *
+ * Unverified (sourced from design reference — update when confirmed):
+ *   – 150+ PROJECTS EXECUTED
+ *   – 50,000+ ACRES / KM SURVEYED
+ */
+export interface StatItem {
+  value: number | null;
+  suffix?: string;
+  staticValue?: string;
+  label: string;
+  description: string;
+}
+
+export const STATS: readonly StatItem[] = [
+  {
+    value: 150,
+    suffix: "+",
+    label: "Projects Executed",
+    description:
+      "Across infrastructure, energy, mining and development sectors.",
+  },
+  {
+    value: 50000,
+    suffix: "+",
+    label: "Acres / KM Surveyed",
+    description:
+      "Large-scale & corridor projects across diverse terrains.",
+  },
+  {
+    value: null,
+    staticValue: "PAN India",
+    label: "Service Coverage",
+    description:
+      "Project execution and support across all states.",
+  },
+  {
+    value: 6,
+    suffix: "",
+    label: "Survey Technologies",
+    description:
+      "Drone, GNSS, LiDAR, Total Station, Thermal and GIS.",
+  },
+] as const;
+
