@@ -39,19 +39,19 @@ export function AboutSection() {
                 {/* Subtle Technical Overlays */}
                 <div className="absolute inset-0 pointer-events-none border border-brand-charcoal/10" aria-hidden="true">
                   {/* Crosshair top right */}
-                  <div className="absolute top-8 right-8 w-4 h-4 opacity-40">
+                  <div className="absolute top-8 right-8 w-4 h-4 opacity-20">
                     <div className="absolute top-1/2 left-0 w-full h-[1px] bg-brand-charcoal/60 -translate-y-1/2" />
                     <div className="absolute left-1/2 top-0 h-full w-[1px] bg-brand-charcoal/60 -translate-x-1/2" />
                   </div>
                   
                   {/* Coordinate marker bottom right */}
-                  <div className="absolute bottom-6 right-6 text-[0.6rem] font-mono text-brand-charcoal/60 text-right opacity-70">
+                  <div className="absolute bottom-6 right-6 text-[0.6rem] font-mono text-brand-charcoal/60 text-right opacity-50">
                     <p>N 23° 16' 21"</p>
                     <p>E 77° 24' 38"</p>
                   </div>
                   
                   {/* Subtle Grid / Ruler left edge */}
-                  <div className="absolute top-1/4 bottom-1/4 left-4 w-[1px] bg-brand-charcoal/20 flex flex-col justify-between opacity-50">
+                  <div className="absolute top-1/4 bottom-1/4 left-4 w-[1px] bg-brand-charcoal/20 flex flex-col justify-between opacity-30">
                     {[...Array(5)].map((_, i) => (
                       <div key={i} className="w-1.5 h-[1px] bg-brand-charcoal/40" />
                     ))}
@@ -64,7 +64,7 @@ export function AboutSection() {
           {/* RIGHT — ABOUT CONTENT */}
           <div className="w-full lg:w-[46%] relative order-1 lg:order-2">
             {/* Background Graphics */}
-            <div className="absolute -inset-x-12 -inset-y-12 pointer-events-none select-none opacity-[0.03] z-0 hidden lg:block" aria-hidden="true">
+            <div className="absolute -inset-x-12 -inset-y-12 pointer-events-none select-none opacity-[0.02] z-0 hidden lg:block" aria-hidden="true">
               <svg className="w-full h-full" viewBox="0 0 400 400" fill="none">
                 <path d="M0,50 Q100,70 200,40 T400,60" stroke="#1a2436" strokeWidth="1" />
                 <path d="M0,100 Q150,130 250,90 T400,120" stroke="#1a2436" strokeWidth="1" />

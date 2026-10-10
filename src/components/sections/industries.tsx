@@ -42,7 +42,7 @@ const INDUSTRIES = [
     ],
   },
   {
-    name: "Solar Power",
+    name: "Solar & Renewable",
     image: "/images/industry-solar.avif",
     imageAlt: "Aerial view of a large solar power plant with geometric panel arrays in Rajasthan",
     capabilities: [
@@ -53,62 +53,7 @@ const INDUSTRIES = [
     ],
   },
   {
-    name: "Construction",
-    image: "/images/industry-construction.avif",
-    imageAlt: "Active highway construction site with earthmoving machinery and workers",
-    capabilities: [
-      "Progress tracking",
-      "Site mapping",
-      "Quantity verification",
-      "As-built surveys",
-    ],
-  },
-  {
-    name: "Smart Cities",
-    image: "/images/industry-smart-cities.avif",
-    imageAlt: "Aerial view of a modern smart city at golden hour showing organized urban infrastructure",
-    capabilities: [
-      "Urban GIS mapping",
-      "Utility mapping",
-      "Infrastructure planning",
-      "Digital city models",
-    ],
-  },
-  {
-    name: "Transmission Lines",
-    image: "/images/industry-transmission-lines.avif",
-    imageAlt: "Aerial photography of high-voltage transmission towers stretching to the horizon",
-    capabilities: [
-      "Corridor surveys",
-      "Tower positioning",
-      "Clearance analysis",
-      "Route optimisation",
-    ],
-  },
-  {
-    name: "Water Resources",
-    image: "/images/industry-water-resources.avif",
-    imageAlt: "Aerial view of a large dam and reservoir at golden hour",
-    capabilities: [
-      "Reservoir mapping",
-      "Canal alignment",
-      "Floodplain analysis",
-      "Watershed surveys",
-    ],
-  },
-  {
-    name: "Irrigation Projects",
-    image: "/images/industry-irrigation-projects.avif",
-    imageAlt: "Aerial drone view of large irrigation canals through agricultural farmland",
-    capabilities: [
-      "Canal surveys",
-      "Command area mapping",
-      "Terrain analysis",
-      "Earthwork calculations",
-    ],
-  },
-  {
-    name: "Government Infrastructure",
+    name: "Infrastructure",
     image: "/images/industry-government-infrastructure.avif",
     imageAlt: "Aerial view of major bridge infrastructure project under construction",
     capabilities: [
@@ -223,7 +168,7 @@ export function IndustriesSection() {
   return (
     <section
       id="industries"
-      className="relative py-28 lg:py-40 bg-brand-charcoal overflow-hidden"
+      className="relative py-16 lg:py-24 bg-brand-charcoal overflow-hidden"
       aria-labelledby="industries-heading"
       onMouseEnter={() => setShowArrows(true)}
       onMouseLeave={() => setShowArrows(false)}
@@ -243,7 +188,7 @@ export function IndustriesSection() {
 
       {/* ── Header ────────────────────────────────── */}
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-14 lg:mb-18">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-10 lg:mb-12">
           <div className="lg:col-span-5">
             <Reveal direction="up">
               <SectionLabel className="text-brand-accent">Industries</SectionLabel>
@@ -251,7 +196,7 @@ export function IndustriesSection() {
             <Reveal direction="up">
               <h2
                 id="industries-heading"
-                className="mt-4 text-3xl sm:text-4xl font-bold leading-tight tracking-tight text-white"
+                className="mt-3 text-3xl sm:text-[2.25rem] lg:text-[2.5rem] font-bold leading-tight tracking-tight text-white"
               >
                 Surveying across
                 <br />
@@ -261,7 +206,7 @@ export function IndustriesSection() {
           </div>
           <div className="lg:col-span-5 lg:col-start-8 flex items-end">
             <Reveal direction="up">
-              <p className="text-base leading-relaxed text-brand-concrete">
+              <p className="text-[0.95rem] lg:text-[1.05rem] leading-[1.6] text-brand-concrete">
                 Our survey teams operate across India&apos;s most demanding
                 infrastructure sectors — from highway corridors and railway
                 tracks to active mining sites and renewable energy installations.
@@ -381,8 +326,8 @@ export function IndustriesSection() {
                    * Base gradient — darkens further on hover for readability
                    * Two layers: persistent base + hover-intensified overlay
                    */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/10 transition-opacity duration-280" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-280" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-black/10 transition-opacity duration-280" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-280" />
 
                   {/* Gold tint overlay on hover */}
                   <div
@@ -400,27 +345,27 @@ export function IndustriesSection() {
                    * revealing the capabilities list beneath it.
                    */}
                   <div
-                    className="industry-panel absolute left-0 right-0 bottom-0 p-5 transition-transform duration-280 ease-out group-hover:-translate-y-10"
+                    className="industry-panel absolute left-0 right-0 bottom-0 p-6 transition-transform duration-280 ease-out group-hover:-translate-y-12"
                     style={{ willChange: "transform" }}
                   >
                     {/* Industry title — always visible */}
-                    <h3 className="text-[15px] font-semibold text-white leading-tight tracking-wide mb-3.5">
+                    <h3 className="text-[1.2rem] font-bold text-white leading-tight tracking-wide mb-4 drop-shadow-md">
                       {industry.name}
                     </h3>
 
                     {/* Capabilities list — fades in on hover (always visible on mobile) */}
                     <ul
-                      className="industry-caps space-y-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 delay-75"
+                      className="industry-caps space-y-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 delay-75"
                       aria-label={`${industry.name} capabilities`}
                     >
                       {industry.capabilities.map((cap) => (
                         <li
                           key={cap}
-                          className="flex items-start gap-2 text-[11.5px] font-medium text-white/75 leading-snug"
+                          className="flex items-start gap-2 text-[0.85rem] font-medium text-white/90 leading-snug drop-shadow-sm"
                         >
                           {/* Gold tick */}
                           <span
-                            className="mt-[3px] flex-shrink-0 w-[4px] h-[4px] rounded-full bg-brand-accent"
+                            className="mt-[5px] flex-shrink-0 w-[4px] h-[4px] rounded-full bg-brand-accent"
                             aria-hidden="true"
                           />
                           {cap}

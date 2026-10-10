@@ -30,19 +30,19 @@ export function FounderSection() {
                 {/* Subtle Technical Overlays */}
                 <div className="absolute inset-0 pointer-events-none border border-brand-charcoal/10" aria-hidden="true">
                   {/* Crosshair top left */}
-                  <div className="absolute top-6 left-6 w-4 h-4 opacity-40">
+                  <div className="absolute top-6 left-6 w-4 h-4 opacity-15">
                     <div className="absolute top-1/2 left-0 w-full h-[1px] bg-brand-charcoal/60 -translate-y-1/2" />
                     <div className="absolute left-1/2 top-0 h-full w-[1px] bg-brand-charcoal/60 -translate-x-1/2" />
                   </div>
                   
                   {/* Coordinate marker top right */}
-                  <div className="absolute top-5 right-5 text-[0.55rem] font-mono text-brand-charcoal/60 text-right opacity-70">
+                  <div className="absolute top-5 right-5 text-[0.55rem] font-mono text-brand-charcoal/60 text-right opacity-30">
                     <p>N 23° 16' 21"</p>
                     <p>E 77° 24' 38"</p>
                   </div>
                   
                   {/* Subtle Grid / Ruler bottom edge */}
-                  <div className="absolute bottom-4 left-1/4 right-1/4 h-[1px] bg-brand-charcoal/20 flex justify-between opacity-50">
+                  <div className="absolute bottom-4 left-1/4 right-1/4 h-[1px] bg-brand-charcoal/20 flex justify-between opacity-20">
                     {[...Array(5)].map((_, i) => (
                       <div key={i} className="w-[1px] h-1.5 bg-brand-charcoal/40" />
                     ))}
@@ -116,9 +116,9 @@ export function FounderSection() {
           </div>
 
           {/* FAR RIGHT — OPTIONAL TECHNICAL STRIP */}
-          <div className="hidden xl:flex xl:w-[4%] border-l border-brand-charcoal/10 flex-col items-center justify-between py-6 relative opacity-60">
+          <div className="hidden xl:flex xl:w-[4%] border-l border-brand-charcoal/10 flex-col items-center justify-between py-6 relative opacity-40">
             {/* Topographic line background */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20" aria-hidden="true">
+            <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-[0.08]" aria-hidden="true">
               <svg className="w-full h-full" viewBox="0 0 50 400" fill="none" preserveAspectRatio="none">
                 <path d="M25,0 Q0,100 25,200 T25,400" stroke="#1a2436" strokeWidth="0.5" />
                 <path d="M10,0 Q30,100 10,200 T10,400" stroke="#1a2436" strokeWidth="0.5" strokeDasharray="2 4" />

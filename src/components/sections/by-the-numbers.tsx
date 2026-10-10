@@ -177,30 +177,30 @@ function ContourDecoration() {
           d="M-100 280 Q200 240 450 260 Q700 280 950 250 Q1200 220 1540 240"
           stroke="#1a2436"
           strokeWidth="0.6"
-          opacity="0.035"
+          opacity="0.02"
         />
         <path
           d="M-100 310 Q250 275 500 295 Q750 315 1000 285 Q1250 255 1540 275"
           stroke="#1a2436"
           strokeWidth="0.5"
-          opacity="0.025"
+          opacity="0.015"
         />
         <path
           d="M-100 340 Q300 310 550 325 Q800 340 1050 315 Q1300 290 1540 305"
           stroke="#1a2436"
           strokeWidth="0.4"
-          opacity="0.02"
+          opacity="0.01"
         />
 
         {/* Survey crosshair — upper right */}
-        <g opacity="0.05" transform="translate(1240, 110)">
+        <g opacity="0.03" transform="translate(1240, 110)">
           <line x1="-10" y1="0" x2="10" y2="0" stroke="#1a2436" strokeWidth="0.5" />
           <line x1="0" y1="-10" x2="0" y2="10" stroke="#1a2436" strokeWidth="0.5" />
           <circle cx="0" cy="0" r="4" stroke="#1a2436" strokeWidth="0.4" fill="none" />
         </g>
 
         {/* Small crosshair — lower left */}
-        <g opacity="0.035" transform="translate(160, 640)">
+        <g opacity="0.02" transform="translate(160, 640)">
           <line x1="-7" y1="0" x2="7" y2="0" stroke="#1a2436" strokeWidth="0.5" />
           <line x1="0" y1="-7" x2="0" y2="7" stroke="#1a2436" strokeWidth="0.5" />
         </g>
@@ -211,7 +211,7 @@ function ContourDecoration() {
           y="135"
           fontSize="6.5"
           fill="#1a2436"
-          opacity="0.04"
+          opacity="0.02"
           fontFamily="monospace"
         >
           E 77°24′
@@ -221,7 +221,7 @@ function ContourDecoration() {
           y="145"
           fontSize="6.5"
           fill="#1a2436"
-          opacity="0.04"
+          opacity="0.02"
           fontFamily="monospace"
         >
           N 23°16′
@@ -233,7 +233,7 @@ function ContourDecoration() {
           stroke="#1a2436"
           strokeWidth="0.5"
           fill="none"
-          opacity="0.03"
+          opacity="0.015"
         />
 
         {/* Faint alignment grid dots */}
@@ -245,7 +245,7 @@ function ContourDecoration() {
               cy={y}
               r="0.6"
               fill="#1a2436"
-              opacity="0.02"
+              opacity="0.01"
             />
           ))
         )}
@@ -275,16 +275,16 @@ function TerrainDecoration() {
         preserveAspectRatio="none"
       >
         {/* Horizontal elevation reference lines */}
-        <line x1="0" y1="40" x2="1440" y2="40" stroke="#1a2436" strokeWidth="0.5" opacity="0.025" />
-        <line x1="0" y1="60" x2="1440" y2="60" stroke="#1a2436" strokeWidth="0.5" opacity="0.03" />
-        <line x1="0" y1="80" x2="1440" y2="80" stroke="#1a2436" strokeWidth="0.5" opacity="0.025" />
+        <line x1="0" y1="40" x2="1440" y2="40" stroke="#1a2436" strokeWidth="0.5" opacity="0.015" />
+        <line x1="0" y1="60" x2="1440" y2="60" stroke="#1a2436" strokeWidth="0.5" opacity="0.02" />
+        <line x1="0" y1="80" x2="1440" y2="80" stroke="#1a2436" strokeWidth="0.5" opacity="0.015" />
 
         {/* Primary terrain profile */}
         <path
           d="M0 78 L80 74 L160 76 L260 66 L360 62 L440 58 L540 64 L640 56 L720 52 L820 48 L900 52 L1000 46 L1080 42 L1160 48 L1260 54 L1340 58 L1440 55"
           stroke="#1a2436"
           strokeWidth="0.8"
-          opacity="0.06"
+          opacity="0.035"
         />
 
         {/* Secondary contour (deeper layer) */}
@@ -292,7 +292,7 @@ function TerrainDecoration() {
           d="M0 88 L80 86 L160 87 L260 80 L360 77 L440 74 L540 79 L640 73 L720 70 L820 66 L900 70 L1000 64 L1080 60 L1160 66 L1260 72 L1340 76 L1440 73"
           stroke="#1a2436"
           strokeWidth="0.5"
-          opacity="0.035"
+          opacity="0.02"
         />
 
         {/* Vertical survey ticks */}
@@ -305,15 +305,15 @@ function TerrainDecoration() {
             y2="64"
             stroke="#1a2436"
             strokeWidth="0.5"
-            opacity="0.035"
+            opacity="0.02"
           />
         ))}
 
         {/* Elevation labels */}
-        <text x="1090" y="38" fontSize="5" fill="#1a2436" opacity="0.04" fontFamily="monospace">
+        <text x="1090" y="38" fontSize="5" fill="#1a2436" opacity="0.02" fontFamily="monospace">
           +420m
         </text>
-        <text x="640" y="50" fontSize="5" fill="#1a2436" opacity="0.03" fontFamily="monospace">
+        <text x="640" y="50" fontSize="5" fill="#1a2436" opacity="0.015" fontFamily="monospace">
           +380m
         </text>
       </svg>
