@@ -131,7 +131,6 @@ export function Navbar() {
                 opacity: scrolled ? 1 : 0,
                 transition: "opacity 300ms ease",
               }}
-              quality={95}
               unoptimized
             />
             {/* White logo — visible over hero (transparent navbar) */}
@@ -153,7 +152,6 @@ export function Navbar() {
                 opacity: scrolled ? 0 : 1,
                 transition: "opacity 300ms ease",
               }}
-              quality={95}
               unoptimized
             />
           </div>
