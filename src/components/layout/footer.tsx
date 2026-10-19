@@ -6,12 +6,13 @@ import MapPin from "lucide-react/dist/esm/icons/map-pin";
 import { SITE_NAME, CONTACT, NAV_LINKS } from "@/lib/constants";
 
 const SERVICE_LINKS = [
-  { label: "DGPS Survey", href: "#services" },
-  { label: "Drone Survey", href: "#services" },
-  { label: "LiDAR Survey", href: "#services" },
-  { label: "Topographical Survey", href: "#services" },
-  { label: "GIS Mapping", href: "#services" },
+  { label: "DGPS Survey", href: "/services" },
+  { label: "Drone Survey", href: "/services" },
+  { label: "LiDAR Survey", href: "/services" },
+  { label: "Topographic Survey", href: "/services" },
+  { label: "GIS Mapping", href: "/services" },
 ];
+
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
