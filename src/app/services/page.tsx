@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import { Navbar, Footer } from "@/components/layout";
 import { ServicesPageContent } from "@/components/pages/services-page";
 
@@ -55,11 +54,10 @@ export default function ServicesPage() {
         <ServicesPageContent />
       </main>
       <Footer />
-      <Script
-        id="services-schema"
+      {/* Services JSON-LD — server-side rendered */}
+      <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesSchema) }}
-        strategy="afterInteractive"
       />
     </>
   );

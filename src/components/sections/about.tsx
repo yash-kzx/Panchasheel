@@ -93,7 +93,7 @@ export function AboutSection() {
 
               <Reveal direction="up" delay={0.1}>
                 <p className="mt-3 text-[0.95rem] leading-[1.7] text-brand-slate max-w-[42ch]">
-                  Panchasheel Geo Infra Solution is a geospatial surveying and infrastructure support company providing accurate, reliable and project-ready spatial data for infrastructure, energy, industrial and development projects across India.
+                  Panchasheel Geo Infra Solutions is a geospatial surveying and infrastructure support company providing accurate, reliable and project-ready spatial data for infrastructure, energy, industrial and development projects across India.
                 </p>
                 <p className="mt-2 text-[0.95rem] leading-[1.7] text-brand-slate max-w-[42ch]">
                   We combine field surveying, modern survey technologies, data processing and QA/QC to produce engineering-ready outputs for planning, design and execution.

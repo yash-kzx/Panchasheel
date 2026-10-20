@@ -76,7 +76,7 @@ export function FounderSection() {
                   Infrastructure development requires absolute technical integrity. Every major engineering decision depends entirely on the precision of the initial ground truth.
                 </p>
                 <p>
-                  We founded Panchasheel Geo Infra Solution to bring modern surveying technology to India’s critical infrastructure projects. We don't just supply maps; we take engineering responsibility for our geospatial data, delivering reliable outputs you can build upon with absolute confidence.
+                  We founded Panchasheel Geo Infra Solutions to bring modern surveying technology to India’s critical infrastructure projects. We don't just supply maps; we take engineering responsibility for our geospatial data, delivering reliable outputs you can build upon with absolute confidence.
                 </p>
               </div>
             </Reveal>

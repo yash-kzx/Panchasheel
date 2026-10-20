@@ -1,6 +1,6 @@
 /* ── Site Constants ─────────────────────────────────────── */
 
-export const SITE_NAME = "Panchsheel Geo Infra Solution";
+export const SITE_NAME = "Panchasheel Geo Infra Solutions";
 export const SITE_TAGLINE =
   "Professional Geospatial & Infrastructure Surveying";
 export const SITE_DESCRIPTION =

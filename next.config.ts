@@ -2,13 +2,13 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /*
-   * Canonical domain enforcement:
-   * Redirect bare domain to www (301 Permanent).
-   * This eliminates duplicate content from Google indexing both versions.
-   * Only active in production — dev is unaffected.
+   * Canonical domain: redirect bare domain (panchasheelgeoinfra.com) to www.
+   * The `has: host` matcher ensures this only fires when the request hostname
+   * is exactly "panchasheelgeoinfra.com" — localhost is unaffected.
+   * No vercel.json exists, so there is no risk of conflicting redirect rules.
+   * Permanent (308/301) tells search engines which URL to index.
    */
   async redirects() {
-    if (process.env.NODE_ENV !== "production") return [];
     return [
       {
         source: "/:path*",

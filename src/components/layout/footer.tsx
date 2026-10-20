@@ -143,7 +143,7 @@ export function Footer() {
       <div className="border-t border-white/8">
         <div className="mx-auto max-w-7xl px-6 py-5 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-[0.65rem] text-brand-concrete tracking-wide">
-            © {currentYear} Panchasheel Geo Infra Solution. All rights reserved.
+            © {currentYear} Panchasheel Geo Infra Solutions. All rights reserved.
           </p>
           <p className="text-[0.65rem] text-brand-concrete/60 tracking-wide">
             Bhopal, Madhya Pradesh &nbsp;·&nbsp; PAN India operations
